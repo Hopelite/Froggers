@@ -1,28 +1,42 @@
 #include "Vector.h"
+#include <math.h>
 
-Vector::Vector(double x1, double y1, double z1, double x2, double y2, double z2)
+Vector::Vector(double x, double y, double z)
 {
-	this->startPoint = new Vector::Point(x1, y1, z1);
-	this->endPoint = new Vector::Point(x2, y2, z2);
+	this->x = x;
+	this->y = y;
+	this->z = z;
+}
+
+Vector::Vector(const Vector& vector)
+{
+	this->x = vector.x;
+	this->y = vector.y;
+	this->z = vector.z;
 }
 
 Vector::~Vector()
 {
+	// TODO: implement deconstructor
 }
 
 double Vector::getLength()
 {
-	// TODO: insert return statement here
+	return sqrt(pow((this->x), 2) + pow((this->y), 2) + pow((this->z), 2)) * 100 / 100;
 }
 
-const Vector& Vector::operator+(const Vector& rhs)
+Vector& Vector::operator+(const Vector& rhs)
 {
-	// TODO: insert return statement here
+	Vector result(this->x + rhs.x, this->y + rhs.y, this->z + rhs.z);
+	return result;
 }
 
 Vector& Vector::operator+=(const Vector& rhs)
 {
-	// TODO: insert return statement here
+	this->x += rhs.x;
+	this->y += rhs.y;
+	this->z += rhs.z;
+	return *this;
 }
 
 const Vector& Vector::operator-(const Vector& rhs)
@@ -70,28 +84,57 @@ const Vector& Vector::operator^(const Vector& rhs)
 	// TODO: insert return statement here
 }
 
+Vector& Vector::operator=(const Vector& rhs)
+{
+	if (&rhs != this)
+	{
+		this->x = rhs.x;
+		this->y = rhs.y;
+		this->z = rhs.z;
+	}
+
+	return *this;
+}
+
 bool Vector::operator>(const Vector& rhs)
 {
+	if (this->x > rhs.x && this->y > rhs.y && this->z > rhs.z)
+	{
+		return true;
+	}
+
 	return false;
 }
 
 bool Vector::operator>=(const Vector& rhs)
 {
+	if (this->x >= rhs.x && this->y >= rhs.y && this->z >= rhs.z)
+	{
+		return true;
+	}
+
 	return false;
 }
 
 bool Vector::operator<(const Vector& rhs)
 {
+	// TODO: implement method
 	return false;
 }
 
 bool Vector::operator<=(const Vector& rhs)
 {
+	// TODO: implement method
 	return false;
 }
 
 bool Vector::operator==(const Vector& rhs)
 {
+	if (this->x == rhs.x && this->y == rhs.y && this->z == rhs.z)
+	{
+		return true;
+	}
+
 	return false;
 }
 
@@ -100,9 +143,14 @@ bool Vector::operator!=(const Vector& rhs)
 	return false;
 }
 
-Vector::Point::Point(double x, double y, double z)
+std::ostream& operator<<(std::ostream& out, const Vector& vector)
 {
-	this->x = x;
-	this->y = y;
-	this->z = z;
+	// TODO: implement method
+	return out;
+}
+
+std::istream& operator>>(std::istream& in, const Vector& vector)
+{
+	// TODO: implement method
+	return in;
 }

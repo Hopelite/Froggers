@@ -1,12 +1,16 @@
 #pragma once
+#include <iostream>
 
 class Vector
 {
+	friend std::ostream& operator<<(std::ostream& out, const Vector& vector);
+	friend std::istream& operator>>(std::istream& in, const Vector& vector);
 public:
-	Vector(double x1, double y1, double z1, double x2, double y2, double z2);
+	Vector(double x, double y, double z);
+	Vector(const Vector& vector);
 	~Vector();
 	double getLength();
-	const Vector& operator+(const Vector& rhs);
+	Vector& operator+(const Vector& rhs);
 	Vector& operator+=(const Vector& rhs);
 	const Vector& operator-(const Vector& rhs);
 	Vector& operator-=(const Vector& rhs);
@@ -17,6 +21,7 @@ public:
 	const Vector& operator/(const Vector& rhs);
 	Vector& operator/=(const Vector& rhs);
 	const Vector& operator^(const Vector& rhs);
+	Vector& operator=(const Vector& rhs);
 	bool operator>(const Vector& rhs);
 	bool operator>=(const Vector& rhs);
 	bool operator<(const Vector& rhs);
@@ -25,18 +30,7 @@ public:
 	bool operator!=(const Vector& rhs);
 
 private:
-	struct Point
-	{
-	public:
-		friend class Vector;
-		Point(double x, double y, double z);
-
-	private:
-		double x;
-		double y;
-		double z;
-	};
-
-	Point *startPoint;
-	Point *endPoint;
+	double x;
+	double y;
+	double z;
 };
