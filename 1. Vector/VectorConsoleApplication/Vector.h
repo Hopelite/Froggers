@@ -22,10 +22,10 @@ public:
 	Vector& operator/=(const Vector& rhs);
 	const Vector& operator^(const Vector& rhs);
 	Vector& operator=(const Vector& rhs);
-	bool operator>(const Vector& rhs);
-	bool operator>=(const Vector& rhs);
-	bool operator<(const Vector& rhs);
-	bool operator<=(const Vector& rhs);
+	bool operator>(Vector& rhs);
+	bool operator>=(Vector& rhs);
+	bool operator<(Vector& rhs);
+	bool operator<=(Vector& rhs);
 	bool operator==(const Vector& rhs);
 	bool operator!=(const Vector& rhs);
 
