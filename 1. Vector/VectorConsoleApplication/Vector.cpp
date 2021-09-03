@@ -96,9 +96,9 @@ Vector& Vector::operator=(const Vector& rhs)
 	return *this;
 }
 
-bool Vector::operator>(const Vector& rhs)
+bool Vector::operator>(Vector& rhs)
 {
-	if (this->x > rhs.x && this->y > rhs.y && this->z > rhs.z)
+	if (this->getLength() > rhs.getLength())
 	{
 		return true;
 	}
@@ -106,9 +106,9 @@ bool Vector::operator>(const Vector& rhs)
 	return false;
 }
 
-bool Vector::operator>=(const Vector& rhs)
+bool Vector::operator>=(Vector& rhs)
 {
-	if (this->x >= rhs.x && this->y >= rhs.y && this->z >= rhs.z)
+	if (this->getLength() >= rhs.getLength())
 	{
 		return true;
 	}
@@ -116,13 +116,13 @@ bool Vector::operator>=(const Vector& rhs)
 	return false;
 }
 
-bool Vector::operator<(const Vector& rhs)
+bool Vector::operator<(Vector& rhs)
 {
 	// TODO: implement method
 	return false;
 }
 
-bool Vector::operator<=(const Vector& rhs)
+bool Vector::operator<=(Vector& rhs)
 {
 	// TODO: implement method
 	return false;
