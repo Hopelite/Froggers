@@ -15,6 +15,7 @@ Vector::Vector(const Vector& vector)
 	this->z = vector.z;
 }
 
+
 Vector::~Vector()
 {
 	// TODO: implement deconstructor
@@ -61,12 +62,16 @@ Vector& Vector::operator*=(const Vector& rhs)
 
 const Vector& Vector::operator*(const double& rhs)
 {
-	// TODO: insert return statement here
+	Vector result(this->x * rhs, this->y * rhs, this->z * rhs);
+	return result;
 }
 
 Vector& Vector::operator*=(const double& rhs)
 {
-	// TODO: insert return statement here
+	this->x *= rhs;
+	this->y *= rhs;
+	this->z *= rhs;
+	return *this;
 }
 
 const Vector& Vector::operator/(const Vector& rhs)
