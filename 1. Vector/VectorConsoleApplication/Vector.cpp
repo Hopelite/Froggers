@@ -123,13 +123,21 @@ bool Vector::operator>=(Vector& rhs)
 
 bool Vector::operator<(Vector& rhs)
 {
-	// TODO: implement method
+	if (this->getLength() < rhs.getLength())
+	{
+		return true;
+	}
+
 	return false;
 }
 
 bool Vector::operator<=(Vector& rhs)
 {
-	// TODO: implement method
+	if (this->getLength() <= rhs.getLength())
+	{
+		return true;
+	}
+
 	return false;
 }
 
