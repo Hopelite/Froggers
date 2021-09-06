@@ -15,10 +15,56 @@ Vector::Vector(const Vector& vector)
 	this->z = vector.z;
 }
 
-
 Vector::~Vector()
 {
 	// TODO: implement deconstructor
+}
+
+void Vector::getCoords(double& x, double& y, double& z)
+{
+	x = this->x;
+	y = this->y;
+	z = this->z;
+}
+
+void Vector::setCoords(double &x, double &y, double &z)
+{
+	this->x = x;
+	this->y = y;
+	this->z = z;
+}
+
+double Vector::getX()
+{
+	// TODO: implement get method
+	return 0.0;
+}
+
+void Vector::setX(const double& x)
+{
+	// TODO: implement set method
+}
+
+double Vector::getY()
+{
+	// TODO: implement get method
+	return 0.0;
+}
+
+void Vector::setY(const double& y)
+{
+	// TODO: implement set method
+}
+
+double Vector::getZ()
+{
+	// TODO: implement get method
+	return 0.0;
+}
+
+void Vector::setZ(const double& z)
+{
+	// TODO: implement set method
 }
 
 double Vector::getLength()
@@ -84,7 +130,7 @@ Vector& Vector::operator/=(const Vector& rhs)
 	// TODO: insert return statement here
 }
 
-const Vector& Vector::operator^(const Vector& rhs)
+double Vector::operator^(const Vector& rhs)
 {
 	// TODO: insert return statement here
 }
