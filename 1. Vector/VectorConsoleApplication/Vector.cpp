@@ -36,7 +36,7 @@ void Vector::setCoords(double& x, double& y, double& z)
 
 double Vector::getX()
 {
-	// TODO: implement set method
+	// TODO: implement get method
 	return 0.0;
 }
 
@@ -145,7 +145,7 @@ Vector& Vector::operator/=(const Vector& rhs)
 	return *this;
 }
 
-double Vector::operator^(const Vector& rhs) 
+double Vector::operator^(const Vector& rhs)
 {
 	return (this->x * rhs.x + this->y * rhs.y + this->z * rhs.z) /
 		(sqrt(pow(this->x, 2) + pow(this->y, 2) + pow(this->z, 2)) * sqrt(pow(rhs.x, 2) + pow(rhs.y, 2) + pow(rhs.z, 2)));

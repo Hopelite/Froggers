@@ -41,7 +41,7 @@ public:
 
 	const Vector& operator/(const Vector& rhs);
 	Vector& operator/=(const Vector& rhs);
-  
+
 	double operator^(const Vector& rhs);
 	Vector& operator=(const Vector& rhs);
 
