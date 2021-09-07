@@ -15,7 +15,6 @@ Vector::Vector(const Vector& vector)
 	this->z = vector.z;
 }
 
-
 Vector::~Vector()
 {
 	// TODO: implement deconstructor
@@ -42,12 +41,16 @@ Vector& Vector::operator+=(const Vector& rhs)
 
 const Vector& Vector::operator-(const Vector& rhs)
 {
-	// TODO: insert return statement here
+	Vector result(this->x - rhs.x, this->y - rhs.y, this->z - rhs.z);
+	return result;
 }
 
 Vector& Vector::operator-=(const Vector& rhs)
 {
-	// TODO: insert return statement here
+	this->x -= rhs.x;
+	this->y -= rhs.y;
+	this->z -= rhs.z;
+	return *this;
 }
 
 const Vector& Vector::operator*(const Vector& rhs)
@@ -74,7 +77,7 @@ Vector& Vector::operator*=(const double& rhs)
 	return *this;
 }
 
-const Vector& Vector::operator/(const Vector& rhs) 
+const Vector& Vector::operator/(const Vector& rhs)
 {
 	Vector result(this->x / rhs.x, this->y / rhs.y, this->z / rhs.z);
 	return result;
@@ -160,17 +163,23 @@ bool Vector::operator==(const Vector& rhs)
 
 bool Vector::operator!=(const Vector& rhs)
 {
-	return false;
+	if (this->x != rhs.x || this->y != rhs.y || this->z != rhs.z)
+		return true;
+	else return false;
 }
 
 std::ostream& operator<<(std::ostream& out, const Vector& vector)
 {
 	// TODO: implement method
+	out << "Vector(" << vector.x << ", " << vector.y << ", " << vector.z << ")";
 	return out;
 }
 
-std::istream& operator>>(std::istream& in, const Vector& vector)
+std::istream& operator>>(std::istream& in, Vector& vector)
 {
 	// TODO: implement method
+	in >> vector.x;
+	in >> vector.y;
+	in >> vector.z;
 	return in;
 }
