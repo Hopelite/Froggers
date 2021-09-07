@@ -1,6 +1,9 @@
 #include "Vector.h"
 #include <math.h>
 
+
+Vector::Vector(){}
+
 Vector::Vector(double x, double y, double z)
 {
 	this->x = x;
@@ -14,7 +17,6 @@ Vector::Vector(const Vector& vector)
 	this->y = vector.y;
 	this->z = vector.z;
 }
-
 
 Vector::~Vector()
 {
@@ -42,13 +44,18 @@ Vector& Vector::operator+=(const Vector& rhs)
 
 const Vector& Vector::operator-(const Vector& rhs)
 {
-	// TODO: insert return statement here
+	Vector result(this->x - rhs.x, this->y - rhs.y, this->z - rhs.z);
+	return result;
 }
 
 Vector& Vector::operator-=(const Vector& rhs)
 {
-	// TODO: insert return statement here
+	this->x -= rhs.x;
+	this->y -= rhs.y;
+	this->z -= rhs.z;
+	return *this;
 }
+
 
 const Vector& Vector::operator*(const Vector& rhs)
 {
@@ -59,6 +66,7 @@ Vector& Vector::operator*=(const Vector& rhs)
 {
 	// TODO: insert return statement here
 }
+
 
 const Vector& Vector::operator*(const double& rhs)
 {
@@ -74,6 +82,7 @@ Vector& Vector::operator*=(const double& rhs)
 	return *this;
 }
 
+
 const Vector& Vector::operator/(const Vector& rhs)
 {
 	// TODO: insert return statement here
@@ -88,6 +97,7 @@ const Vector& Vector::operator^(const Vector& rhs)
 {
 	// TODO: insert return statement here
 }
+
 
 Vector& Vector::operator=(const Vector& rhs)
 {
@@ -121,6 +131,7 @@ bool Vector::operator>=(Vector& rhs)
 	return false;
 }
 
+
 bool Vector::operator<(Vector& rhs)
 {
 	// TODO: implement method
@@ -132,6 +143,7 @@ bool Vector::operator<=(Vector& rhs)
 	// TODO: implement method
 	return false;
 }
+
 
 bool Vector::operator==(const Vector& rhs)
 {
@@ -145,17 +157,23 @@ bool Vector::operator==(const Vector& rhs)
 
 bool Vector::operator!=(const Vector& rhs)
 {
-	return false;
+	if (this->x != rhs.x || this->y != rhs.y || this->z != rhs.z)
+		return true;
+	else return false;
 }
 
 std::ostream& operator<<(std::ostream& out, const Vector& vector)
 {
 	// TODO: implement method
+	out << "Vector(" << vector.x << ", " << vector.y << ", " << vector.z << ")";
 	return out;
 }
 
-std::istream& operator>>(std::istream& in, const Vector& vector)
+std::istream& operator>>(std::istream& in, Vector& vector)
 {
 	// TODO: implement method
+	in >> vector.x;
+	in >> vector.y;
+	in >> vector.z;
 	return in;
 }
