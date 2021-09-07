@@ -74,19 +74,26 @@ Vector& Vector::operator*=(const double& rhs)
 	return *this;
 }
 
-const Vector& Vector::operator/(const Vector& rhs)
+const Vector& Vector::operator/(const Vector& rhs) 
 {
-	// TODO: insert return statement here
+	Vector result(this->x / rhs.x, this->y / rhs.y, this->z / rhs.z);
+	return result;
+	
 }
 
 Vector& Vector::operator/=(const Vector& rhs)
 {
-	// TODO: insert return statement here
+	this->x /= rhs.x;
+	this->y /= rhs.y;
+	this->z /= rhs.z;
+	return *this;
 }
 
-const Vector& Vector::operator^(const Vector& rhs)
+double Vector::operator^(const Vector& rhs) 
 {
-	// TODO: insert return statement here
+	double result((this->x * rhs.x + this->y * rhs.y + this->z * rhs.z)/
+		(sqrt(pow(this->x,2)+ pow(this->y, 2)+ pow(this->z, 2))*sqrt(pow(rhs.x, 2) + pow(rhs.y, 2) + pow(rhs.z, 2)));
+	return result;
 }
 
 Vector& Vector::operator=(const Vector& rhs)

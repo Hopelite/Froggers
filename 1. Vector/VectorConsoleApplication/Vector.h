@@ -20,7 +20,7 @@ public:
 	Vector& operator*=(const double& rhs);
 	const Vector& operator/(const Vector& rhs);
 	Vector& operator/=(const Vector& rhs);
-	const Vector& operator^(const Vector& rhs);
+	double operator^(const Vector& rhs);
 	Vector& operator=(const Vector& rhs);
 	bool operator>(Vector& rhs);
 	bool operator>=(Vector& rhs);
