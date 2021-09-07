@@ -13,6 +13,18 @@ public:
 
 	~Vector();
 
+	void getCoords(double& x, double& y, double& z);
+	void setCoords(double& x, double& y, double& z);
+
+	double getX();
+	void setX(const double& x);
+
+	double getY();
+	void setY(const double& y);
+
+	double getZ();
+	void setZ(const double& z);
+
 	double getLength();
 
 	Vector& operator+(const Vector& rhs);

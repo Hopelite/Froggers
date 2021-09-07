@@ -20,6 +20,53 @@ Vector::~Vector()
 	// TODO: implement deconstructor
 }
 
+void Vector::getCoords(double& x, double& y, double& z)
+{
+	x = this->x;
+	y = this->y;
+	z = this->z;
+}
+
+void Vector::setCoords(double& x, double& y, double& z)
+{
+	this->x = x;
+	this->y = y;
+	this->z = z;
+}
+
+double Vector::getX()
+{
+	// TODO: implement set method
+	return 0.0;
+}
+
+void Vector::setX(const double& x)
+{
+	// TODO: implement set method
+}
+
+double Vector::getY()
+{
+	// TODO: implement set method
+	return 0.0;
+}
+
+void Vector::setY(const double& y)
+{
+	// TODO: implement set method
+}
+
+double Vector::getZ()
+{
+	// TODO: implement set method
+	return 0.0;
+}
+
+void Vector::setZ(const double& z)
+{
+	// TODO: implement set method
+}
+
 double Vector::getLength()
 {
 	return sqrt(pow((this->x), 2) + pow((this->y), 2) + pow((this->z), 2)) * 100 / 100;
@@ -55,12 +102,18 @@ Vector& Vector::operator-=(const Vector& rhs)
 
 const Vector& Vector::operator*(const Vector& rhs)
 {
-	// TODO: insert return statement here
+	Vector result((this->y * rhs.z - this->z * rhs.y), -(this->x * rhs.z - this->z * rhs.x), (this->x * rhs.y - this->y * rhs.x));
+	return result;
 }
 
 Vector& Vector::operator*=(const Vector& rhs)
 {
-	// TODO: insert return statement here
+	double x = this->x, y = this->y;
+
+	this->x = this->y * rhs.z - this->z * rhs.y;
+	this->y = -(x * rhs.z - this->z * rhs.x);
+	this->z = x * rhs.y - y * rhs.x;
+	return *this;
 }
 
 const Vector& Vector::operator*(const double& rhs)
@@ -94,9 +147,8 @@ Vector& Vector::operator/=(const Vector& rhs)
 
 double Vector::operator^(const Vector& rhs) 
 {
-	double result((this->x * rhs.x + this->y * rhs.y + this->z * rhs.z)/
-		(sqrt(pow(this->x,2)+ pow(this->y, 2)+ pow(this->z, 2))*sqrt(pow(rhs.x, 2) + pow(rhs.y, 2) + pow(rhs.z, 2)));
-	return result;
+	return (this->x * rhs.x + this->y * rhs.y + this->z * rhs.z) /
+		(sqrt(pow(this->x, 2) + pow(this->y, 2) + pow(this->z, 2)) * sqrt(pow(rhs.x, 2) + pow(rhs.y, 2) + pow(rhs.z, 2)));
 }
 
 Vector& Vector::operator=(const Vector& rhs)
@@ -164,22 +216,21 @@ bool Vector::operator==(const Vector& rhs)
 bool Vector::operator!=(const Vector& rhs)
 {
 	if (this->x != rhs.x || this->y != rhs.y || this->z != rhs.z)
+	{
 		return true;
-	else return false;
+	}
+	
+	return false;
 }
 
 std::ostream& operator<<(std::ostream& out, const Vector& vector)
 {
-	// TODO: implement method
-	out << "Vector(" << vector.x << ", " << vector.y << ", " << vector.z << ")";
+	out << "(" << vector.x << ", " << vector.y << ", " << vector.z << ")";
 	return out;
 }
 
 std::istream& operator>>(std::istream& in, Vector& vector)
 {
-	// TODO: implement method
-	in >> vector.x;
-	in >> vector.y;
-	in >> vector.z;
+	in >> vector.x >> vector.y >> vector.z;
 	return in;
 }
