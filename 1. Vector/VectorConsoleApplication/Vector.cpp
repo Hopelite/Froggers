@@ -36,13 +36,12 @@ void Vector::setCoords(double& x, double& y, double& z)
 
 double Vector::getX()
 {
-	// TODO: implement get method
-	return 0.0;
+	return this->x;
 }
 
 void Vector::setX(const double& x)
 {
-	// TODO: implement set method
+	this->x = x;
 }
 
 double Vector::getY()
