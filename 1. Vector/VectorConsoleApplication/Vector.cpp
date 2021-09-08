@@ -47,13 +47,12 @@ void Vector::setX(const double& x)
 
 double Vector::getY()
 {
-	// TODO: implement set method
-	return 0.0;
+	return this->y;
 }
 
 void Vector::setY(const double& y)
 {
-	// TODO: implement set method
+	this->y = y;
 }
 
 double Vector::getZ()
