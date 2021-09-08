@@ -56,13 +56,12 @@ void Vector::setY(const double& y)
 
 double Vector::getZ()
 {
-	// TODO: implement set method
-	return 0.0;
+	return this->z;
 }
 
 void Vector::setZ(const double& z)
 {
-	// TODO: implement set method
+	this->z = z;
 }
 
 double Vector::getLength()
