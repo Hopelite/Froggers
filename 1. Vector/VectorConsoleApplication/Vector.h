@@ -11,8 +11,6 @@ public:
 	Vector(double x, double y, double z);
 	Vector(const Vector& vector);
 
-	~Vector();
-
 	void getCoords(double& x, double& y, double& z);
 	void setCoords(double& x, double& y, double& z);
 

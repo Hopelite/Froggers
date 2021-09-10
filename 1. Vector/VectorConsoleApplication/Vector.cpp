@@ -1,5 +1,6 @@
 #include "Vector.h"
 #include <math.h>
+#include <iomanip>
 
 Vector::Vector(double x, double y, double z)
 {
@@ -13,11 +14,6 @@ Vector::Vector(const Vector& vector)
 	this->x = vector.x;
 	this->y = vector.y;
 	this->z = vector.z;
-}
-
-Vector::~Vector()
-{
-	// TODO: implement deconstructor
 }
 
 void Vector::getCoords(double& x, double& y, double& z)
@@ -66,7 +62,7 @@ void Vector::setZ(const double& z)
 
 double Vector::getLength()
 {
-	return sqrt(pow((this->x), 2) + pow((this->y), 2) + pow((this->z), 2)) * 100 / 100;
+	return sqrt(pow((this->x), 2) + pow((this->y), 2) + pow((this->z), 2));
 }
 
 Vector& Vector::operator+(const Vector& rhs)
