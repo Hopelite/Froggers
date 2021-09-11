@@ -2,7 +2,7 @@
 #include <math.h>
 #include <iomanip>
 
-Vector::Vector(double x, double y, double z)
+Vector::Vector(const double x, const double y, const double z)
 {
 	this->x = x;
 	this->y = y;
@@ -23,7 +23,7 @@ void Vector::getCoords(double& x, double& y, double& z)
 	z = this->z;
 }
 
-void Vector::setCoords(double& x, double& y, double& z)
+void Vector::setCoords(const double& x, const double& y, const double& z)
 {
 	this->x = x;
 	this->y = y;
@@ -65,13 +65,13 @@ double Vector::getLength()
 	return sqrt(pow((this->x), 2) + pow((this->y), 2) + pow((this->z), 2));
 }
 
-Vector& Vector::operator+(const Vector& rhs)
+const Vector& Vector::operator+(const Vector& rhs)
 {
 	Vector result(this->x + rhs.x, this->y + rhs.y, this->z + rhs.z);
 	return result;
 }
 
-Vector& Vector::operator+=(const Vector& rhs)
+const Vector& Vector::operator+=(const Vector& rhs)
 {
 	this->x += rhs.x;
 	this->y += rhs.y;
@@ -85,7 +85,7 @@ const Vector& Vector::operator-(const Vector& rhs)
 	return result;
 }
 
-Vector& Vector::operator-=(const Vector& rhs)
+const Vector& Vector::operator-=(const Vector& rhs)
 {
 	this->x -= rhs.x;
 	this->y -= rhs.y;
@@ -99,7 +99,7 @@ const Vector& Vector::operator*(const Vector& rhs)
 	return result;
 }
 
-Vector& Vector::operator*=(const Vector& rhs)
+const Vector& Vector::operator*=(const Vector& rhs)
 {
 	double x = this->x, y = this->y;
 
@@ -115,7 +115,7 @@ const Vector& Vector::operator*(const double& rhs)
 	return result;
 }
 
-Vector& Vector::operator*=(const double& rhs)
+const Vector& Vector::operator*=(const double& rhs)
 {
 	this->x *= rhs;
 	this->y *= rhs;
@@ -130,7 +130,7 @@ const Vector& Vector::operator/(const Vector& rhs)
 	
 }
 
-Vector& Vector::operator/=(const Vector& rhs)
+const Vector& Vector::operator/=(const Vector& rhs)
 {
 	this->x /= rhs.x;
 	this->y /= rhs.y;
@@ -144,7 +144,7 @@ double Vector::operator^(const Vector& rhs)
 		(sqrt(pow(this->x, 2) + pow(this->y, 2) + pow(this->z, 2)) * sqrt(pow(rhs.x, 2) + pow(rhs.y, 2) + pow(rhs.z, 2)));
 }
 
-Vector& Vector::operator=(const Vector& rhs)
+const Vector& Vector::operator=(const Vector& rhs)
 {
 	if (&rhs != this)
 	{
@@ -207,13 +207,8 @@ bool Vector::operator==(const Vector& rhs)
 }
 
 bool Vector::operator!=(const Vector& rhs)
-{
-	if (this->x != rhs.x || this->y != rhs.y || this->z != rhs.z)
-	{
-		return true;
-	}
-	
-	return false;
+{	
+	return !(*this == rhs);
 }
 
 std::ostream& operator<<(std::ostream& out, const Vector& vector)
