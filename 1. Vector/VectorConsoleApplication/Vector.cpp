@@ -1,6 +1,12 @@
 #include "Vector.h"
 #include <math.h>
-#include <iomanip>
+
+Vector::Vector()
+{
+	this->x = 0.00;
+	this->y = 0.00;
+	this->z = 0.00;
+}
 
 Vector::Vector(const double x, const double y, const double z)
 {
