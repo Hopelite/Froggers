@@ -106,5 +106,26 @@ namespace VectorTests
 			Assert::IsTrue(firstVector >= secondVector);
 			Assert::IsFalse(firstVector <= secondVector);
 		}
+
+		TEST_METHOD(VectorTests_MathematicalOperators)
+		{
+			// Arrange
+			Vector firstVector(1.00, 2.00, 3.00), secondVector(1.00, 3.00, 5.00);
+
+			// Assert
+			Vector firstExpected(2.00, 5.00, 8.00), secondExpected(0.00, -1.00, -2.00), thirdExpected(0.00, 1.00, 2.00), actual;
+			actual = firstVector + secondVector;
+
+			//Assert::AreEqual(firstExpected, actual);
+
+			actual = secondVector + firstVector;
+			//Assert::AreEqual(firstExpected, actual);
+
+			actual = firstVector - secondVector;
+			//Assert::AreEqual(secondExpected, actual);
+
+			actual = secondVector - firstVector;
+			//Assert::AreEqual(thirdExpected, actual);
+		}
 	};
 }

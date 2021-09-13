@@ -60,7 +60,8 @@ public:
 	void setZ(const double& z);
 
 	/// \brief Calculates current vector length.
-	/// \return Double value of vector length.
+	/// \details This method calculates vector length using $\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(x_2-x_1)}$ formula.
+	/// \return Vector length.
 	double getLength();
 
 	/// \brief Operator '+' that adds vectors.
@@ -121,7 +122,7 @@ public:
 
 	/// \brief Operator '==' that compares vectors according to their length.
 	/// \return True if left operand equals right; false otherwise.
-	bool operator==(const Vector& rhs);
+	const bool operator==(const Vector& rhs);
 	/// \brief Operator '!=' that compares vectors according to their length.
 	/// \return True if left operand isn't equal to the right; false otherwise.
 	bool operator!=(const Vector& rhs);

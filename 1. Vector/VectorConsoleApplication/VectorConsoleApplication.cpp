@@ -5,5 +5,11 @@ using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	Vector firstVector, secondVector;
+	cout << "Enter first vector coordinates: ";
+	cin >> firstVector;
+	cout << "First vector = " << firstVector << endl;
+	cout << "Enter second vector coordinates: ";
+	cin >> secondVector;
+	cout << "Second vector = " << secondVector << endl;
 }

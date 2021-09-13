@@ -202,7 +202,7 @@ bool Vector::operator<=(Vector& rhs)
 	return false;
 }
 
-bool Vector::operator==(const Vector& rhs)
+const bool Vector::operator==(const Vector& rhs)
 {
 	if (this->x == rhs.x && this->y == rhs.y && this->z == rhs.z)
 	{
