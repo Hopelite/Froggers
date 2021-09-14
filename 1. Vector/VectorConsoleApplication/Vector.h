@@ -66,35 +66,35 @@ public:
 
 	/// \brief Operator '+' that adds vectors.
 	/// \return New vector with summarized coordinates of left and right operands.
-	const Vector& operator+(const Vector& rhs);
+	const Vector operator+(const Vector& rhs);
 	/// \brief Operator '+=' that adds vectors and assigns result to the left operand.
 	/// \return Reassigned vector with summarized coordinates of left and right operands.
 	const Vector& operator+=(const Vector& rhs);
 
 	/// \brief Operator '-' that subtracts vectors.
 	/// \return New vector with subtracted coordinates of left and right operands.
-	const Vector& operator-(const Vector& rhs);
+	const Vector operator-(const Vector& rhs);
 	/// \brief Operator '-=' that subtracts vectors and assigns result to the left operand.
 	/// \return Reassigned vector with subtracted coordinates of left and right operands.
 	const Vector& operator-=(const Vector& rhs);
 
 	/// \brief Operator '*' that multiplies vectors.
 	/// \return New vector according to scalar multiplication.
-	const Vector& operator*(const Vector& rhs);
+	const Vector operator*(const Vector& rhs);
 	/// \brief Operator '*=' that multiplies vectors and assigns result to the left operand.
 	/// \return Reassigned vector according to scalar multiplication.
 	const Vector& operator*=(const Vector& rhs);
 
 	/// \brief Operator '*' that multiplies vector by number.
 	/// \return New vector with multiplied by number coordinates.
-	const Vector& operator*(const double& rhs);
+	const Vector operator*(const double& rhs);
 	/// \brief Operator '*=' that multiplies vector by number and assigns result to the left operand.
 	/// \return Reassigned vector with multiplied by number coordinates.
 	const Vector& operator*=(const double& rhs);
 
 	/// \brief Operator '/' that divides vectors.
 	/// \return New vector with divided coordinates of left and right operands.
-	const Vector& operator/(const Vector& rhs);
+	const Vector operator/(const Vector& rhs);
 	/// \brief Operator '/=' that divides vectors and assigns result to the left operand.
 	/// \return Reassigned vector with divided coordinates of left and right operands.
 	const Vector& operator/=(const Vector& rhs);

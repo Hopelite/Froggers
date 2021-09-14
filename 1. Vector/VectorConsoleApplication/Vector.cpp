@@ -71,9 +71,25 @@ double Vector::getLength()
 	return sqrt(pow((this->x), 2) + pow((this->y), 2) + pow((this->z), 2));
 }
 
-const Vector& Vector::operator+(const Vector& rhs)
+const Vector& Vector::operator=(const Vector& rhs)
 {
-	Vector result(this->x + rhs.x, this->y + rhs.y, this->z + rhs.z);
+	if (&rhs != this)
+	{
+	this->x = rhs.x;
+	this->y = rhs.y;
+	this->z = rhs.z;
+	}
+
+	return *this;
+}
+
+const Vector Vector::operator+(const Vector& rhs)
+{
+	Vector result;
+	result.x = this->x + rhs.x;
+	result.y = this->y + rhs.y;
+	result.z = this->z + rhs.z;
+
 	return result;
 }
 
@@ -85,7 +101,7 @@ const Vector& Vector::operator+=(const Vector& rhs)
 	return *this;
 }
 
-const Vector& Vector::operator-(const Vector& rhs)
+const Vector Vector::operator-(const Vector& rhs)
 {
 	Vector result(this->x - rhs.x, this->y - rhs.y, this->z - rhs.z);
 	return result;
@@ -99,7 +115,7 @@ const Vector& Vector::operator-=(const Vector& rhs)
 	return *this;
 }
 
-const Vector& Vector::operator*(const Vector& rhs)
+const Vector Vector::operator*(const Vector& rhs)
 {
 	Vector result((this->y * rhs.z - this->z * rhs.y), -(this->x * rhs.z - this->z * rhs.x), (this->x * rhs.y - this->y * rhs.x));
 	return result;
@@ -115,7 +131,7 @@ const Vector& Vector::operator*=(const Vector& rhs)
 	return *this;
 }
 
-const Vector& Vector::operator*(const double& rhs)
+const Vector Vector::operator*(const double& rhs)
 {
 	Vector result(this->x * rhs, this->y * rhs, this->z * rhs);
 	return result;
@@ -129,7 +145,7 @@ const Vector& Vector::operator*=(const double& rhs)
 	return *this;
 }
 
-const Vector& Vector::operator/(const Vector& rhs)
+const Vector Vector::operator/(const Vector& rhs)
 {
 	Vector result(this->x / rhs.x, this->y / rhs.y, this->z / rhs.z);
 	return result;
@@ -148,18 +164,6 @@ double Vector::operator^(const Vector& rhs)
 {
 	return (this->x * rhs.x + this->y * rhs.y + this->z * rhs.z) /
 		(sqrt(pow(this->x, 2) + pow(this->y, 2) + pow(this->z, 2)) * sqrt(pow(rhs.x, 2) + pow(rhs.y, 2) + pow(rhs.z, 2)));
-}
-
-const Vector& Vector::operator=(const Vector& rhs)
-{
-	if (&rhs != this)
-	{
-		this->x = rhs.x;
-		this->y = rhs.y;
-		this->z = rhs.z;
-	}
-
-	return *this;
 }
 
 bool Vector::operator>(Vector& rhs)
