@@ -4,6 +4,7 @@
 /// \brief Class that represents a mathematical three-dimensional vector.
 /// \details Laboratory work of students of group 021702 of the IIT Department (Faculty of Information Technologies and Control, BSUIR).
 /// \authors Vadim Kurdesov, Daniil Pishch, Veronica Yatskova, Anastasia Degtereva
+/// \include Vector.cpp
 class Vector
 {
 	/// \brief Overrided insertion operator.
@@ -18,7 +19,7 @@ class Vector
 	friend std::istream& operator>>(std::istream& in, Vector& vector);
 
 public:
-	
+
 	/// \brief Default Vector constructor which initializes new Vector object with coordinates equal to zero.
 	Vector();
 	/// \brief Initializes new Vector object with specified coordinates.
@@ -112,7 +113,7 @@ public:
 	/// \brief Operator '>=' that compares vectors according to their length.
 	/// \return True if left operand is greater than or equal right; false otherwise.
 	bool operator>=(Vector& rhs);
-	
+
 	/// \brief Operator '<' that compares vectors according to their length.
 	/// \return True if left operand is less than right; false otherwise.
 	bool operator<(Vector& rhs);
@@ -124,8 +125,11 @@ public:
 	/// \return True if left operand equals right; false otherwise.
 	const bool operator==(const Vector& rhs);
 	/// \brief Operator '!=' that compares vectors according to their length.
-	/// \return True if left operand isn't equal to the right; false otherwise.
+	/// \return True if left operand isn't equal to the right; false otherwise.	
 	bool operator!=(const Vector& rhs);
+
+	/// \brief Prefix operator '++' that increments all vector coordinates by 1.
+	const void operator++();
 
 private:
 	double x;

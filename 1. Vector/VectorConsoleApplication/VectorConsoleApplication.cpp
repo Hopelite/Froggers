@@ -11,5 +11,5 @@ int main()
 	cout << "First vector = " << firstVector << endl;
 	cout << "Enter second vector coordinates: ";
 	cin >> secondVector;
-	cout << "Second vector = " << secondVector << endl;
+	cout << "Second vector = " << secondVector << endl;	
 }

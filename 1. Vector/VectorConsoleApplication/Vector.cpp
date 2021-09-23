@@ -1,3 +1,5 @@
+/// \file
+
 #include "Vector.h"
 #include <math.h>
 
@@ -168,22 +170,12 @@ double Vector::operator^(const Vector& rhs)
 
 bool Vector::operator>(Vector& rhs)
 {
-	if (this->getLength() > rhs.getLength())
-	{
-		return true;
-	}
-
-	return false;
+	return this->getLength() > rhs.getLength();
 }
 
 bool Vector::operator>=(Vector& rhs)
 {
-	if (this->getLength() >= rhs.getLength())
-	{
-		return true;
-	}
-
-	return false;
+	return this->getLength() >= rhs.getLength();
 }
 
 bool Vector::operator<(Vector& rhs)
@@ -219,6 +211,13 @@ const bool Vector::operator==(const Vector& rhs)
 bool Vector::operator!=(const Vector& rhs)
 {	
 	return !(*this == rhs);
+}
+
+const void Vector::operator++()
+{
+	x = this->x + 1;
+	y = this->y + 1;
+	z = this->z + 1;
 }
 
 std::ostream& operator<<(std::ostream& out, const Vector& vector)
