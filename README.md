@@ -11,5 +11,5 @@
 - Дегтерёва Анастасия Александровна
 
 **Прогресс выполнения лабораторных работ:**
-- [ ] [№1. Вектор](https://github.com/Hopelite/Froggers/tree/main/1.%20Vector)
-- [ ] [№1. Зоопарк]()
+- [x] [№1. Вектор](https://github.com/Hopelite/Froggers/tree/main/1.%20Vector)
+- [ ] [№2. Зоопарк](https://github.com/Hopelite/Froggers/tree/main/2.%20Zoo)
