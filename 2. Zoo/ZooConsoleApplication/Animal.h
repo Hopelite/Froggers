@@ -5,14 +5,18 @@ class Animal
 {
 public:
 	virtual std::string makeSound() = 0;
-	virtual std::string getSex() = 0;
-	virtual void setSex() = 0;
+	virtual std::string move() = 0;
 
-	virtual int getNumberOfLegs() = 0;
-	virtual void setNumberOfLegs() = 0;
+	void setName(std::string name)
+	{
+		this->name = name;
+	}
+
+	std::string getName()
+	{
+		return this->name;
+	}
 
 private:
-	std::string sex;
-	int numberOfLegs;
+	std::string name;
 };
-

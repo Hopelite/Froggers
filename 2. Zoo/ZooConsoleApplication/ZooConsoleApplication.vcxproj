@@ -139,10 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Beaver.cpp" />
+    <ClCompile Include="Duck.cpp" />
+    <ClCompile Include="Platypus.cpp" />
     <ClCompile Include="ZooConsoleApplication.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animal.h" />
+    <ClInclude Include="Beaver.h" />
+    <ClInclude Include="Duck.h" />
+    <ClInclude Include="Platypus.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
