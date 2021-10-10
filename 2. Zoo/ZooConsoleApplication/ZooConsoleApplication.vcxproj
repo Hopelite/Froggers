@@ -140,6 +140,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Beaver.cpp" />
+    <ClCompile Include="Cat.cpp" />
+    <ClCompile Include="CatDog.cpp" />
+    <ClCompile Include="Dog.cpp" />
     <ClCompile Include="Duck.cpp" />
     <ClCompile Include="Platypus.cpp" />
     <ClCompile Include="ZooConsoleApplication.cpp" />
@@ -147,8 +150,15 @@
   <ItemGroup>
     <ClInclude Include="Animal.h" />
     <ClInclude Include="Beaver.h" />
+    <ClInclude Include="Cat.h" />
+    <ClInclude Include="CatDog.h" />
+    <ClInclude Include="Dog.h" />
     <ClInclude Include="Duck.h" />
     <ClInclude Include="Platypus.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ZooConsoleApplication.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
