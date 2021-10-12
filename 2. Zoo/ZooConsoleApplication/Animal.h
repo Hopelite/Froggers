@@ -7,12 +7,12 @@ public:
 	virtual std::string makeSound() = 0;
 	virtual std::string move() = 0;
 
-	void setName(std::string name)
+	virtual void setName(std::string name)
 	{
 		this->name = name;
 	}
 
-	std::string getName()
+	virtual std::string getName()
 	{
 		return this->name;
 	}
