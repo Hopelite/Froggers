@@ -9,8 +9,3 @@ std::string Cat::move()
 {
 	return "Cat runs.";
 }
-
-int Cat::getNumberOfWings()
-{
-	return 0;
-}

@@ -13,8 +13,6 @@ public:
 
 	std::string move() override;
 	std::string makeSound() override;
-	std::string getName() override;
-	void setName(std::string) override;
 	short getAge() override;
 	void setAge(short age) override;
 	std::string getLocation() override;

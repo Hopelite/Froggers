@@ -3,6 +3,7 @@
 #include "Beaver.h"
 #include "Duck.h"
 #include "Platypus.h"
+#include "FlyingFox.h"
 
 int main()
 {

@@ -9,8 +9,3 @@ std::string Dog::move()
 {
 	return "Running.";
 }
-
-int Dog::getNumberOfWings()
-{
-	return 0;
-}

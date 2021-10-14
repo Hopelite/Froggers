@@ -1,6 +1,6 @@
 #pragma once
 #include "Animal.h"
-class Beaver : public virtual Animal
+class Beaver : protected virtual Animal
 {
 public:
 	virtual std::string makeSound() override;
