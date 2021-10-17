@@ -38,6 +38,16 @@ std::string FlyingFox::makeSound()
 	return Bat::makeSound();
 }
 
+std::string FlyingFox::getName()
+{
+	return Animal::getName();
+}
+
+void FlyingFox::setName(std::string name)
+{
+	return Animal::setName(name);
+}
+
 short FlyingFox::getAge()
 {
 	return Methods::getAge();
