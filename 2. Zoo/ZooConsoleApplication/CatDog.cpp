@@ -1,8 +1,9 @@
 #include "CatDog.h"
 
+
 std::string CatDog::makeSound()
 {
-    return CatDog::makeSound();
+    return Dog::makeSound() + " end " + Cat::makeSound();
 }
 
 std::string CatDog::move()
