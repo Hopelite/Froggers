@@ -31,11 +31,11 @@ Fox::Fox(std::string name, short age, std::string location) : Fox(name, age)
 std::string Fox::move()
 {
 	if (Methods::getNumberOfMeals() >= 0 && Methods::getNumberOfMeals() <= 10) {
-		return "I can to run";
+		return "I can run";
 	} else if (Methods::getNumberOfMeals() <= 0) {
-		return "I can't run 'cause I'm a hungry";
+		return "I can't run 'cause I'm hungry";
 	} else {
-		return "I can't run 'cause I'm a fat";
+		return "I can't run 'cause I'm fat";
 	}
 }
 
