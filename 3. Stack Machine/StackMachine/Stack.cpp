@@ -41,7 +41,7 @@ void Stack::push(int value)
 int Stack::pop()
 {
 	int value;
-	if (this->top)
+	if (this->top != nullptr)
 	{
 		value = this->top->getValue();
 		StackElement* tmp = this->top;
@@ -60,6 +60,11 @@ int Stack::pop()
 
 int Stack::peek()
 {
+	if (this->count == 0)
+	{
+		throw StackIsEmptyException();
+	}
+
 	return this->top->getValue();
 }
 
