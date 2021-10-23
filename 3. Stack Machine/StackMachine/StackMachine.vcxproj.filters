@@ -30,12 +30,21 @@
     <ClInclude Include="StackIsEmptyException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StackMachine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NotEnoughOperandsException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Stack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StackMachine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

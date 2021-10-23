@@ -1,11 +1,12 @@
 #include <iostream>
 #include "..\StackMachine\Stack.h"
 #include "..\StackMachine\StackIsEmptyException.h"
+#include "..\StackMachine\StackMachine.h"
 
 int main()
 {
     // TODO: Stack (push, pop, peek, dup) + Stack Exceptions (Stack is empty)
-    Stack machine;
+    StackMachine machine;
 
     try
     {
