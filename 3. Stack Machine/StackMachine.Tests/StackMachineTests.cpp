@@ -3,6 +3,7 @@
 #include "..\StackMachine\StackMachine.h"
 #include "..\StackMachine\StackIsEmptyException.h"
 #include "..\StackMachine\NotEnoughOperandsException.h"
+#include "..\StackMachine\DivisionByZeroException.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -119,7 +120,7 @@ namespace StackMachineTests
 			}
 		}
 
-		TEST_METHOD(StackMachineTests_ZeoOneOperands_ThrowsNotEnoughOperandsException)
+		TEST_METHOD(StackMachineTests_ZeroOperands_ThrowsNotEnoughOperandsException)
 		{
 			auto func = []
 			{
@@ -140,6 +141,19 @@ namespace StackMachineTests
 			};
 
 			Assert::ExpectException<NotEnoughOperandsException>(func);
+		}
+
+		TEST_METHOD(StackMachineTests_DivideByZero_ThrowsDivisionByZeroException)
+		{
+			auto func = []
+			{
+				StackMachine machine;
+				machine.push(1);
+				machine.push(0);
+				machine.divide();
+			};
+
+			Assert::ExpectException<DivisionByZeroException>(func);
 		}
 	};
 }

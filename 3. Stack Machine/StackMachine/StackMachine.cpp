@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "StackMachine.h"
 #include "NotEnoughOperandsException.h"
-#include "DevisionByZeroException.h"
+#include "DivisionByZeroException.h"
 
 void StackMachine::add()
 {
@@ -16,7 +16,7 @@ void StackMachine::subtract()
 	this->checkNumberOfOperands();
 
 	int rhs = this->pop(), lhs = this->pop();
-	this->push(lsh - rsh);
+	this->push(lhs - rhs);
 }
 
 void StackMachine::multiply()
@@ -34,7 +34,7 @@ void StackMachine::divide()
 	int rhs = this->pop(), lhs = this->pop();
 	if (rhs == 0)
 	{
-		throw DevisionByZeroException();
+		throw DivisionByZeroException();
 	}
 	else
 	{

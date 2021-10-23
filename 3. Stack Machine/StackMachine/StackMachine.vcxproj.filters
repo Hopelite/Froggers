@@ -36,6 +36,9 @@
     <ClInclude Include="NotEnoughOperandsException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DivisionByZeroException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Stack.cpp">
