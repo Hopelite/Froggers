@@ -5,7 +5,7 @@
 
 int main()
 {
-    // TODO: Stack (push, pop, peek, dup) + Stack Exceptions (Stack is empty)
+    // [x] TODO: Stack (push, pop, peek, dup) + Stack Exceptions (Stack is empty)
     StackMachine machine;
 
     try
@@ -18,16 +18,19 @@ int main()
     }
 
     machine.push(1);
+    int value = machine.pop();
     machine.push(2);
     machine.push(3);
+    machine.add();
     machine.duplicate();
+    machine.multiply();
     int count = machine.getCount();
 
-    // TODO: EvaluationFunctions (mul, div, sub, add)
+    // [ ] TODO: EvaluationFunctions (mul, div, sub, add)
 
-    // TODO: Logger (IObserver) + Stack (ISubject)
+    // [ ] TODO: Logger (IObserver) + Stack (ISubject)
 
-    // TODO: Parser
+    // [ ] TODO: Parser
 
     std::cout << "Hello World!\n";
 }

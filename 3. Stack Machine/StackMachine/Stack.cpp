@@ -11,7 +11,12 @@ Stack::Stack()
 
 Stack::~Stack()
 {
-	//TODO: Implement destructor logic.
+	while (this->top != nullptr)
+	{
+		StackElement* elementToDelete = this->top;
+		this->top = this->top->getNext();
+		delete elementToDelete;
+	}
 }
 
 int Stack::getCount()
@@ -35,8 +40,10 @@ void Stack::push(int value)
 
 int Stack::pop()
 {
+	int value;
 	if (this->top)
 	{
+		value = this->top->getValue();
 		StackElement* tmp = this->top;
 		tmp = tmp->getNext();
 		delete this->top;
@@ -48,7 +55,7 @@ int Stack::pop()
 	}
 
 	this->count--;
-	return 0;
+	return value;
 }
 
 int Stack::peek()
