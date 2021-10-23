@@ -2,36 +2,37 @@
 #include "..\StackMachine\Stack.h"
 #include "..\StackMachine\StackIsEmptyException.h"
 #include "..\StackMachine\StackMachine.h"
+#include "..\ConsoleLogger\ConsoleLogger.h"
+
+// [x] TODO: Stack (push, pop, peek, dup) + Stack Exceptions (Stack is empty)
+
+// [X] TODO: EvaluationFunctions (mul, div, sub, add)
+
+// [X] TODO: Logger (IObserver) + Stack (ISubject)
+
+// [ ] TODO: Parser
 
 int main()
 {
-    // [x] TODO: Stack (push, pop, peek, dup) + Stack Exceptions (Stack is empty)
     StackMachine machine;
+    ConsoleLogger logger(&machine);
 
-    /*try
+    try
     {
         machine.duplicate();
     }
     catch (const std::exception& ex)
     {
         std::cout << ex.what();
-    }*/
+    }
 
+    machine.push(1);
+    machine.push(2);
     machine.push(3);
-    //machine.push(0);
-    machine.push(0);
-   // machine.add();
-    //machine.duplicate();
-    //machine.multiply();
+    machine.add();
+    machine.duplicate();
+    machine.multiply();
     machine.divide();
 
-    //int count = machine.getCount();
-
-    // [ ] TODO: EvaluationFunctions (mul, div, sub, add)
-
-    // [ ] TODO: Logger (IObserver) + Stack (ISubject)
-
-    // [ ] TODO: Parser
-
-    std::cout << "Hello World!\n";
+    int count = machine.getCount();
 }

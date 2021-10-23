@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{c4d4b8f9-725d-40c9-b661-311b1f0236e5}</ProjectGuid>
-    <RootNamespace>StackMachine</RootNamespace>
+    <ProjectGuid>{5537d826-c496-4e71-a0f1-2d42c4771bfc}</ProjectGuid>
+    <RootNamespace>ConsoleLogger</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -151,26 +151,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DivisionByZeroException.h" />
+    <ClInclude Include="ConsoleLogger.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="IObserver.h" />
-    <ClInclude Include="ISubject.h" />
-    <ClInclude Include="NotEnoughOperandsException.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="StackElement.h" />
-    <ClInclude Include="StackIsEmptyException.h" />
-    <ClInclude Include="Stack.h" />
-    <ClInclude Include="StackMachine.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ConsoleLogger.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Stack.cpp" />
-    <ClCompile Include="StackMachine.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StackMachine\StackMachine.vcxproj">
+      <Project>{c4d4b8f9-725d-40c9-b661-311b1f0236e5}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

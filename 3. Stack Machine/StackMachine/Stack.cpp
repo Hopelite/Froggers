@@ -7,6 +7,7 @@ Stack::Stack()
 {
 	this->top = nullptr;
 	this->count = 0;
+	this->observer = nullptr;
 }
 
 Stack::~Stack()
@@ -36,6 +37,7 @@ void Stack::push(int value)
 	}
 
 	this->count++;
+	this->notify("Push " + std::to_string(value) + " to stack.\n");
 }
 
 int Stack::pop()
@@ -51,10 +53,12 @@ int Stack::pop()
 	}
 	else
 	{
+		this->notify("Thrown exception: StackIsEmptyException.\n");
 		throw StackIsEmptyException();
 	}
 
 	this->count--;
+	this->notify("Pop " + std::to_string(value) + " from stack.\n");
 	return value;
 }
 
@@ -65,6 +69,7 @@ int Stack::peek()
 		throw StackIsEmptyException();
 	}
 
+	this->notify("Peek " + std::to_string(this->top->getValue()) + " from stack.\n");
 	return this->top->getValue();
 }
 
@@ -72,8 +77,28 @@ void Stack::duplicate()
 {
 	if (this->count == 0)
 	{
+		this->notify("Thrown exception: StackIsEmptyException.\n");
 		throw StackIsEmptyException();
 	}
 
+	this->notify("Duplicate " + std::to_string(this->top->getValue()) + " in stack.\n");
 	this->push(this->top->getValue());
+}
+
+void Stack::attach(IObserver* observer)
+{
+	this->observer = observer;
+}
+
+void Stack::detach()
+{
+	this->observer = nullptr;
+}
+
+void Stack::notify(const std::string& message)
+{
+	if (this->observer != nullptr)
+	{
+		this->observer->update(message);
+	}
 }

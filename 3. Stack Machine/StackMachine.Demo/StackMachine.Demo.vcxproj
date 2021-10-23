@@ -142,6 +142,9 @@
     <ClCompile Include="StackMachine.Demo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConsoleLogger\ConsoleLogger.vcxproj">
+      <Project>{5537d826-c496-4e71-a0f1-2d42c4771bfc}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\StackMachine\StackMachine.vcxproj">
       <Project>{c4d4b8f9-725d-40c9-b661-311b1f0236e5}</Project>
     </ProjectReference>

@@ -21,39 +21,15 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Stack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StackElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StackIsEmptyException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StackMachine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NotEnoughOperandsException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DivisionByZeroException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ISubject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IObserver.h">
+    <ClInclude Include="ConsoleLogger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Stack.cpp">
+    <ClCompile Include="ConsoleLogger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StackMachine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
