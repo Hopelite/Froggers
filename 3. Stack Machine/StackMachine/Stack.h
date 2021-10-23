@@ -1,7 +1,8 @@
 #pragma once
 #include "StackElement.h"
+#include "ISubject.h"
 
-class Stack
+class Stack : public ISubject
 {
 public:
 	Stack();
@@ -14,8 +15,15 @@ public:
 	int peek();
 	void duplicate();
 
+	void attach(IObserver* observer) override;
+	void detach() override;
+
+protected:
+	void notify(const std::string& message) override;
+
 private:
 	int count;
 	StackElement* top;
+	IObserver* observer;
 };
 
