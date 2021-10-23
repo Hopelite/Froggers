@@ -1,11 +1,11 @@
 #pragma once
 #include "StackElement.h"
 
-class StackMachine
+class Stack
 {
 public:
-	StackMachine();
-	~StackMachine();
+	Stack();
+	~Stack();
 
 	int getCount();
 

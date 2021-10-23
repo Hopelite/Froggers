@@ -1,25 +1,25 @@
 #include "pch.h"
 #include "framework.h"
-#include "StackMachine.h"
+#include "Stack.h"
 #include "StackIsEmptyException.h"
 
-StackMachine::StackMachine()
+Stack::Stack()
 {
 	this->top = nullptr;
 	this->count = 0;
 }
 
-StackMachine::~StackMachine()
+Stack::~Stack()
 {
 	//TODO: Implement destructor logic.
 }
 
-int StackMachine::getCount()
+int Stack::getCount()
 {
 	return this->count;
 }
 
-void StackMachine::push(int value)
+void Stack::push(int value)
 {
 	if (this->top == nullptr)
 	{
@@ -33,19 +33,19 @@ void StackMachine::push(int value)
 	this->count++;
 }
 
-int StackMachine::pop()
+int Stack::pop()
 {
 	// TODO: Implement Pop() method.
 	return 0;
 }
 
-int StackMachine::peek()
+int Stack::peek()
 {
 	// TODO: Implement Peek() method.
 	return 0;
 }
 
-void StackMachine::duplicate()
+void Stack::duplicate()
 {
 	if (this->count == 0)
 	{
