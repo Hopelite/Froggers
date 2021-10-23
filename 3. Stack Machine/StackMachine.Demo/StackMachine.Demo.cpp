@@ -8,23 +8,24 @@ int main()
     // [x] TODO: Stack (push, pop, peek, dup) + Stack Exceptions (Stack is empty)
     StackMachine machine;
 
-    try
+    /*try
     {
         machine.duplicate();
     }
     catch (const std::exception& ex)
     {
         std::cout << ex.what();
-    }
+    }*/
 
-    machine.push(1);
-    int value = machine.pop();
-    machine.push(2);
     machine.push(3);
-    machine.add();
-    machine.duplicate();
-    machine.multiply();
-    int count = machine.getCount();
+    //machine.push(0);
+    machine.push(0);
+   // machine.add();
+    //machine.duplicate();
+    //machine.multiply();
+    machine.divide();
+
+    //int count = machine.getCount();
 
     // [ ] TODO: EvaluationFunctions (mul, div, sub, add)
 
