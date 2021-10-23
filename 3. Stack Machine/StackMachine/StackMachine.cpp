@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "framework.h"
 #include "StackMachine.h"
+#include "StackIsEmptyException.h"
 
 StackMachine::StackMachine()
 {
@@ -22,7 +23,7 @@ void StackMachine::push(int value)
 {
 	if (this->top == nullptr)
 	{
-		this->top = new StackElement(value, nullptr);
+		this->top = new StackElement(value);
 	}
 	else
 	{
@@ -46,5 +47,10 @@ int StackMachine::peek()
 
 void StackMachine::duplicate()
 {
-	// TODO: Implement Duplicate() method.
+	if (this->count == 0)
+	{
+		throw StackIsEmptyException();
+	}
+
+	this->push(this->top->getValue());
 }

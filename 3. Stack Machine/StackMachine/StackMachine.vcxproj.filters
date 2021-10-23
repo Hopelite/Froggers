@@ -27,6 +27,9 @@
     <ClInclude Include="StackElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StackIsEmptyException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StackMachine.cpp">
