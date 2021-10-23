@@ -19,6 +19,11 @@ public:
 		return this->value;
 	}
 
+	StackElement* getNext()
+	{
+		return this->next;
+	}
+
 private:
 	int value;
 	StackElement* next;

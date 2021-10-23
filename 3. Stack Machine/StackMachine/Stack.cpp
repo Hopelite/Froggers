@@ -35,14 +35,25 @@ void Stack::push(int value)
 
 int Stack::pop()
 {
-	// TODO: Implement Pop() method.
+	if (this->top)
+	{
+		StackElement* tmp = this->top;
+		tmp = tmp->getNext();
+		delete this->top;
+		this->top = tmp;
+	}
+	else
+	{
+		throw StackIsEmptyException();
+	}
+
+	this->count--;
 	return 0;
 }
 
 int Stack::peek()
 {
-	// TODO: Implement Peek() method.
-	return 0;
+	return this->top->getValue();
 }
 
 void Stack::duplicate()
