@@ -155,7 +155,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="StackElement.h" />
     <ClInclude Include="StackIsEmptyException.h" />
-    <ClInclude Include="StackMachine.h" />
+    <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
