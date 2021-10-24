@@ -1,0 +1,10 @@
+push 10
+push 10 
+div
+push 10
+mul
+push 10
+add
+push 10
+sub
+Work!

@@ -15,7 +15,7 @@
 
 int main()
 {
-    StackMachine machine;
+    /*StackMachine machine;
     ConsoleLogger logger(&machine);
 
     try
@@ -34,6 +34,8 @@ int main()
     machine.duplicate();
     machine.multiply();
     machine.divide();
-
-    int count = machine.getCount();
+    */
+    //int count = machine.getCount();
+    StackMachineFileReader fl("D:\\PPVS_clone\\3. Stack Machine\\StackMachine.Demo\\inputFile.txt");
+    fl.startReading();
 }
