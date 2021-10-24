@@ -3,6 +3,7 @@
 #include "..\StackMachine\StackIsEmptyException.h"
 #include "..\StackMachine\StackMachine.h"
 #include "..\ConsoleLogger\ConsoleLogger.h"
+#include "..\StackMachine\StackMachineFileReader.h"
 
 // [x] TODO: Stack (push, pop, peek, dup) + Stack Exceptions (Stack is empty)
 

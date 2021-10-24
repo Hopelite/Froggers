@@ -161,6 +161,7 @@
     <ClInclude Include="StackIsEmptyException.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StackMachine.h" />
+    <ClInclude Include="StackMachineFileReader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -171,6 +172,7 @@
     </ClCompile>
     <ClCompile Include="Stack.cpp" />
     <ClCompile Include="StackMachine.cpp" />
+    <ClCompile Include="StackMachineFileReader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
