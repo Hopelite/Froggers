@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "StackMachineFileReader.h"
+#include "NoSuchFileException.h"
 #include <iostream>
 
 StackMachineFileReader::StackMachineFileReader(const std::string& pathToFile)
@@ -9,69 +10,54 @@ StackMachineFileReader::StackMachineFileReader(const std::string& pathToFile)
 
 void StackMachineFileReader::startReading()
 {
-	std::ifstream fileStream;
-	fileStream.open(getPathToFile());
+	std::ifstream fileStream(this->pathToFile);
 	if (!fileStream.is_open())
 	{
 		throw NoSuchFileException();
 	}
 	else
 	{
-		std::string fileString{""};
-		StackMachine exempl;
+		std::string fileString;
 		int number = 0;
 		while (!fileStream.eof())
 		{
 			fileStream >> fileString;
 
-			if(fileString == "push") fileStream >> number;
-
 			if (fileString == "push")
 			{
-				exempl.push(number);
-			} 
-
+				fileStream >> number;
+				this->push(number);
+			}
 			else if (fileString == "pop")
 			{
-				exempl.pop();
+				this->pop();
 			}
-
 			else if (fileString == "peek")
 			{
-				exempl.peek();
+				this->peek();
 			}
-
 			else if (fileString == "dup")
 			{
-				exempl.duplicate();
+				this->duplicate();
 			}
-
 			else if (fileString == "add")
 			{
-				exempl.add();
+				this->add();
 			}
-
 			else if (fileString == "sub")
 			{
-				exempl.subtract();
+				this->subtract();
 			}
-
 			else if (fileString == "mul")
 			{
-				exempl.multiply();
+				this->multiply();
 			}
-
 			else if (fileString == "div")
 			{
-				exempl.divide();
-			}
-
-			else
-			{
-				std::cout << "Logic in devoloping\n";
+				this->divide();
 			}
 		}
-
 	}
+
 	fileStream.close();
 }

@@ -15,27 +15,7 @@
 
 int main()
 {
-    /*StackMachine machine;
-    ConsoleLogger logger(&machine);
-
-    try
-    {
-        machine.duplicate();
-    }
-    catch (const std::exception& ex)
-    {
-        std::cout << ex.what();
-    }
-
-    machine.push(1);
-    machine.push(2);
-    machine.push(3);
-    machine.add();
-    machine.duplicate();
-    machine.multiply();
-    machine.divide();
-    */
-    //int count = machine.getCount();
-    StackMachineFileReader fl("D:\\PPVS_clone\\3. Stack Machine\\StackMachine.Demo\\inputFile.txt");
+    StackMachineFileReader fl("C:\\Users\\Admin\\source\\repos\\BSUIR\\inputFile.txt");
+    ConsoleLogger logger(&fl);
     fl.startReading();
 }
