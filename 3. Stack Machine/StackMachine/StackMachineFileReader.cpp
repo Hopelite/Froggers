@@ -145,6 +145,10 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 				}
 			}
 		}
+		else if (functionBody[i] == "goto")
+		{
+			// TODO: Implement 'goto' operator logic.
+		}
 		else if (functionBody[i] == "ifgr")
 		{
 			// TODO: Implement 'ifgr' operator logic.
