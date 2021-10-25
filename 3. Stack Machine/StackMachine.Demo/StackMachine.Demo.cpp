@@ -15,9 +15,17 @@ int main(int argc, char* argv[])
 
     StackMachineFileReader fileReader(argv[1]);
     ConsoleLogger* logger;
-    if (argc == 3 && std::strcmp(argv[2], "-debug") == 0)
+    if (argc == 3)
     {
-        logger = new ConsoleLogger(&fileReader);
+        if (std::strcmp(argv[2], "-debug") == 0)
+        {
+            logger = new ConsoleLogger(&fileReader);
+        }
+        else
+        {
+            std::cout << "Invalid second argument. You can enter only additional \"-debug\" argument." << std::endl;
+            return -1;
+        }
     }
 
     fileReader.startReading();
