@@ -2,6 +2,7 @@
 #include "StackMachineFileReader.h"
 #include "NoSuchFileException.h"
 #include "NoSuchFunctionException.h"
+#include "NoReturnPointException.h"
 #include <iostream>
 #include <map>
 
@@ -117,7 +118,11 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 		}
 		else if (functionBody[i] == "return")
 		{
-			break;
+			return;
 		}
 	}
+
+	// If there is no "return" operator in function, throw an exception.
+	this->notify("Thrown exception: NoReturnPointException. Function \"" + functionName + "\" has no \"return\" operator.\n");
+	throw NoReturnPointException(functionName);
 }

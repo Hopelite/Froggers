@@ -54,6 +54,9 @@
     <ClInclude Include="NoSuchFunctionException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NoReturnPointException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Stack.cpp">
