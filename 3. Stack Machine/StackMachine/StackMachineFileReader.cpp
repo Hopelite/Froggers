@@ -116,9 +116,31 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 		{
 			this->parseFunction(functionBody[++i]);
 		}
+		else if (functionBody[i] == "ifeq")
+		{
+			int rhs = this->pop(), lhs = this->pop();
+			std::string label = functionBody[++i] + ":";
+
+			if (lhs == rhs)
+			{
+				while (i < functionBody.size() && functionBody[i] != label)
+				{
+					i++;
+				}
+
+				if (i == functionBody.size())
+				{
+					// TODO: Implement NoSuchLabelException exception.
+				}
+			}
+		}
 		else if (functionBody[i] == "return")
 		{
 			return;
+		}
+		else if (functionBody[i] == "callext")
+		{
+			std::cout << this->pop();
 		}
 	}
 

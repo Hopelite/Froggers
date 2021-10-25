@@ -16,6 +16,6 @@
 int main()
 {
     StackMachineFileReader fl("C:\\Users\\Admin\\source\\repos\\BSUIR\\inputFile.txt");
-    ConsoleLogger logger(&fl);
+    //ConsoleLogger logger(&fl);
     fl.startReading();
 }
