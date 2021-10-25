@@ -3,6 +3,7 @@
 #include "..\StackMachine\StackIsEmptyException.h"
 #include "..\StackMachine\StackMachine.h"
 #include "..\ConsoleLogger\ConsoleLogger.h"
+#include "..\StackMachine\StackMachineFileReader.h"
 
 // [x] TODO: Stack (push, pop, peek, dup) + Stack Exceptions (Stack is empty)
 
@@ -10,29 +11,13 @@
 
 // [X] TODO: Logger (IObserver) + Stack (ISubject)
 
-// [ ] TODO: Parser
+// [X] TODO: Parser
 
 int main()
 {
-    StackMachine machine;
-    ConsoleLogger logger(&machine);
+    StackMachineFileReader fl("C:\\Users\\Admin\\source\\repos\\BSUIR\\inputFile.txt");
 
-    try
-    {
-        machine.duplicate();
-    }
-    catch (const std::exception& ex)
-    {
-        std::cout << ex.what();
-    }
-
-    machine.push(1);
-    machine.push(2);
-    machine.push(3);
-    machine.add();
-    machine.duplicate();
-    machine.multiply();
-    machine.divide();
-
-    int count = machine.getCount();
+    // Uncomment next line to track program execution.
+    //ConsoleLogger logger(&fl);
+    fl.startReading();
 }
