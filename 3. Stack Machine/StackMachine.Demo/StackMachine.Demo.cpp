@@ -5,19 +5,20 @@
 #include "..\ConsoleLogger\ConsoleLogger.h"
 #include "..\StackMachine\StackMachineFileReader.h"
 
-// [x] TODO: Stack (push, pop, peek, dup) + Stack Exceptions (Stack is empty)
-
-// [X] TODO: EvaluationFunctions (mul, div, sub, add)
-
-// [X] TODO: Logger (IObserver) + Stack (ISubject)
-
-// [X] TODO: Parser
-
-int main()
+int main(int argc, char* argv[])
 {
-    StackMachineFileReader fl("C:\\Users\\Admin\\source\\repos\\BSUIR\\inputFile.txt");
+    if (argc > 3)
+    {
+        std::cout << "Invalid number of input arguments. You can enter only <pathToFile> with additional \"-debug\" argument." << std::endl;
+        return -1;
+    }
 
-    // Uncomment next line to track program execution.
-    //ConsoleLogger logger(&fl);
-    fl.startReading();
+    StackMachineFileReader fileReader(argv[1]);
+    ConsoleLogger* logger;
+    if (argc == 3 && std::strcmp(argv[2], "-debug") == 0)
+    {
+        logger = new ConsoleLogger(&fileReader);
+    }
+
+    fileReader.startReading();
 }
