@@ -84,11 +84,6 @@ void StackMachineFileReader::addOuterFunction(std::string functionName, std::fun
 	this->outerFunctions->insert(std::pair<std::string, std::function<void(Stack*)>>(functionName, function));
 }
 
-//void StackMachineFileReader::addOuterFunction(std::string functionName, IOuterFunction* function)
-//{
-//	this->outerFunctions.push_back()
-//}
-
 void StackMachineFileReader::parseFunction(std::string functionName)
 {
 	// If specified function doesn't exist throw an exception.
