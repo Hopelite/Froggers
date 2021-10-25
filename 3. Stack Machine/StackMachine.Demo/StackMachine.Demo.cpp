@@ -1,6 +1,4 @@
 #include <iostream>
-#include "..\StackMachine\Stack.h"
-#include "..\StackMachine\StackIsEmptyException.h"
 #include "..\StackMachine\StackMachine.h"
 #include "..\ConsoleLogger\ConsoleLogger.h"
 #include "..\StackMachine\StackMachineFileReader.h"

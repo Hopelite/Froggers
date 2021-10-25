@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "framework.h"
 #include "Stack.h"
-#include "StackIsEmptyException.h"
+#include "Exceptions/StackIsEmptyException.h"
 
 Stack::Stack()
 {

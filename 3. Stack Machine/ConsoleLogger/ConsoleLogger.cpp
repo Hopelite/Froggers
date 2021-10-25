@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "framework.h"
 #include "ConsoleLogger.h"
-#include "..\StackMachine\ISubject.h"
+#include "ISubject.h"
 #include <iostream>
 
 ConsoleLogger::ConsoleLogger(ISubject* subject)

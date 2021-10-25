@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Exceptions">
+      <UniqueIdentifier>{766539e4-9e73-4eab-854e-b501e9efb2f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -27,35 +30,29 @@
     <ClInclude Include="StackElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StackIsEmptyException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="StackMachine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NotEnoughOperandsException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DivisionByZeroException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ISubject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IObserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StackMachineFileReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="NoSuchFileException.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Exceptions\DivisionByZeroException.h">
+      <Filter>Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="NoSuchFunctionException.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Exceptions\NoReturnPointException.h">
+      <Filter>Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="NoReturnPointException.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Exceptions\NoSuchFileException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\NoSuchFunctionException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\NotEnoughOperandsException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\StackIsEmptyException.h">
+      <Filter>Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

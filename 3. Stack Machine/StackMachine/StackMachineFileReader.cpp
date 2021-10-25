@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "StackMachineFileReader.h"
-#include "NoSuchFileException.h"
-#include "NoSuchFunctionException.h"
-#include "NoReturnPointException.h"
+#include "Exceptions/NoSuchFileException.h"
+#include "Exceptions/NoSuchFunctionException.h"
+#include "Exceptions/NoReturnPointException.h"
 #include <iostream>
 #include <map>
 

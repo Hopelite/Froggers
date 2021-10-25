@@ -151,17 +151,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DivisionByZeroException.h" />
+    <ClInclude Include="Exceptions\DivisionByZeroException.h" />
+    <ClInclude Include="Exceptions\NoReturnPointException.h" />
+    <ClInclude Include="Exceptions\NoSuchFileException.h" />
+    <ClInclude Include="Exceptions\NoSuchFunctionException.h" />
+    <ClInclude Include="Exceptions\NotEnoughOperandsException.h" />
+    <ClInclude Include="Exceptions\StackIsEmptyException.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="IObserver.h" />
-    <ClInclude Include="ISubject.h" />
-    <ClInclude Include="NoReturnPointException.h" />
-    <ClInclude Include="NoSuchFileException.h" />
-    <ClInclude Include="NoSuchFunctionException.h" />
-    <ClInclude Include="NotEnoughOperandsException.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="StackElement.h" />
-    <ClInclude Include="StackIsEmptyException.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StackMachine.h" />
     <ClInclude Include="StackMachineFileReader.h" />

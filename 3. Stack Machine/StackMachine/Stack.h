@@ -1,6 +1,6 @@
 #pragma once
 #include "StackElement.h"
-#include "ISubject.h"
+#include "..\ConsoleLogger\ISubject.h"
 
 class Stack : public ISubject
 {

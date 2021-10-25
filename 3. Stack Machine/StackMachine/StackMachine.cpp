@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "StackMachine.h"
-#include "NotEnoughOperandsException.h"
-#include "DivisionByZeroException.h"
+#include "Exceptions/NotEnoughOperandsException.h"
+#include "Exceptions/DivisionByZeroException.h"
 
 void StackMachine::add()
 {

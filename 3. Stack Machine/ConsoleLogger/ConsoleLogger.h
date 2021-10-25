@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "..\StackMachine\ISubject.h"
+#include "ISubject.h"
 
 class ConsoleLogger : public IObserver
 {
