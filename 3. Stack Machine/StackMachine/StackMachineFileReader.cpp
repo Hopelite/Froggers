@@ -6,8 +6,6 @@
 
 StackMachineFileReader::StackMachineFileReader(const std::string& pathToFile)
 {
-	// TODO: Implement logic of skipping comments.
-
 	this->functions = new std::map<std::string, std::vector<std::string>>;
 
 	std::ifstream fileStream(pathToFile);
@@ -27,14 +25,25 @@ StackMachineFileReader::StackMachineFileReader(const std::string& pathToFile)
 				std::string currentString;
 				std::vector<std::string> functionBody;
 				fileStream >> currentString;
-				while (currentString != "{")
+				while (currentString != "{" && !fileStream.eof())
 				{
 					fileStream >> currentString;
 				}
 
 				fileStream >> currentString;
-				while (currentString != "}")
+				while (currentString != "}" && !fileStream.eof())
 				{
+					// Logic of skipping comments.
+					if (currentString == "#")
+					{
+						while (fileStream.peek() != '\n')
+						{
+							fileStream >> currentString;
+						}
+
+						fileStream >> currentString;
+					}
+
 					functionBody.push_back(currentString);
 					fileStream >> currentString;
 				}
@@ -54,46 +63,59 @@ StackMachineFileReader::~StackMachineFileReader()
 
 void StackMachineFileReader::startReading()
 {
-	if (this->functions->find("main") == this->functions->end())
+	this->parseFunction("main");
+}
+
+void StackMachineFileReader::parseFunction(std::string functionName)
+{
+	if (this->functions->find(functionName) == this->functions->end())
 	{
 		// TODO: Implement NoEntryPointException exception.
 	}
 
-	std::vector<std::string> mainBody = this->functions->find("main")->second;
-	for (size_t i = 0; i < mainBody.size(); i++)
+	std::vector<std::string> functionBody = this->functions->find(functionName)->second;
+	for (size_t i = 0; i < functionBody.size(); i++)
 	{
-		if (mainBody[i] == "push")
+		if (functionBody[i] == "push")
 		{
-			int number = std::stoi(mainBody[++i]);
+			int number = std::stoi(functionBody[++i]);
 			this->push(number);
 		}
-		else if (mainBody[i] == "pop")
+		else if (functionBody[i] == "pop")
 		{
 			this->pop();
 		}
-		else if (mainBody[i] == "peek")
+		else if (functionBody[i] == "peek")
 		{
 			this->peek();
 		}
-		else if (mainBody[i] == "dup")
+		else if (functionBody[i] == "dup")
 		{
 			this->duplicate();
 		}
-		else if (mainBody[i] == "add")
+		else if (functionBody[i] == "add")
 		{
 			this->add();
 		}
-		else if (mainBody[i] == "sub")
+		else if (functionBody[i] == "sub")
 		{
 			this->subtract();
 		}
-		else if (mainBody[i] == "mul")
+		else if (functionBody[i] == "mul")
 		{
 			this->multiply();
 		}
-		else if (mainBody[i] == "div")
+		else if (functionBody[i] == "div")
 		{
 			this->divide();
+		}
+		else if (functionBody[i] == "call")
+		{
+			this->parseFunction(functionBody[++i]);
+		}
+		else if (functionBody[i] == "return")
+		{
+			break;
 		}
 	}
 }
