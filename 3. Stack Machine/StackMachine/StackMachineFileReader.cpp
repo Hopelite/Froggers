@@ -9,6 +9,7 @@
 StackMachineFileReader::StackMachineFileReader(const std::string& pathToFile)
 {
 	this->functions = new std::map<std::string, std::vector<std::string>>;
+	this->outerFunctions = new std::map<std::string, std::function<void(Stack*)>>;
 
 	// Opens file and starts reading it's content.
 	std::ifstream fileStream(pathToFile);
@@ -69,6 +70,7 @@ StackMachineFileReader::StackMachineFileReader(const std::string& pathToFile)
 StackMachineFileReader::~StackMachineFileReader()
 {
 	delete this->functions;
+	delete this->outerFunctions;
 }
 
 void StackMachineFileReader::startReading()
