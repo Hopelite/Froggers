@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "StackMachineFileReader.h"
 #include "NoSuchFileException.h"
+#include "NoSuchFunctionException.h"
 #include <iostream>
 #include <map>
 
@@ -70,7 +71,8 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 {
 	if (this->functions->find(functionName) == this->functions->end())
 	{
-		// TODO: Implement NoEntryPointException exception.
+		this->notify("Thrown exception: NoSuchFunctionException. Can't find function \"" + functionName + "\".\n");
+		throw NoSuchFunctionException(functionName);
 	}
 
 	std::vector<std::string> functionBody = this->functions->find(functionName)->second;

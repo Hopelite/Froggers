@@ -156,6 +156,7 @@
     <ClInclude Include="IObserver.h" />
     <ClInclude Include="ISubject.h" />
     <ClInclude Include="NoSuchFileException.h" />
+    <ClInclude Include="NoSuchFunctionException.h" />
     <ClInclude Include="NotEnoughOperandsException.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="StackElement.h" />
