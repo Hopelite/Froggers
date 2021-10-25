@@ -77,6 +77,16 @@ void StackMachineFileReader::startReading()
 	this->parseFunction("main");
 }
 
+void StackMachineFileReader::addOuterFunction(std::string functionName, std::function<void(Stack*)> function)
+{
+	this->outerFunctions->insert(std::pair<std::string, std::function<void(Stack*)>>(functionName, function));
+}
+
+//void StackMachineFileReader::addOuterFunction(std::string functionName, IOuterFunction* function)
+//{
+//	this->outerFunctions.push_back()
+//}
+
 void StackMachineFileReader::parseFunction(std::string functionName)
 {
 	// If specified function doesn't exist throw an exception.
@@ -151,19 +161,17 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 		}
 		else if (functionBody[i] == "callext")
 		{
-			if (functionBody[++i] == "print")
+			if (this->outerFunctions->find(functionName) == this->outerFunctions->end())
 			{
-				this->print();
+				// TODO: Implement NoSuchOuterFunctionException exception.
 			}
+
+			std::function<void(Stack*)> outerFunction = this->outerFunctions->find(functionBody[++i])->second;
+			outerFunction(this);
 		}
 	}
 
 	// If there is no "return" operator in function, throw an exception.
 	this->notify("Thrown exception: NoReturnPointException. Function \"" + functionName + "\" has no \"return\" operator.\n");
 	throw NoReturnPointException(functionName);
-}
-
-void StackMachineFileReader::print()
-{
-	std::cout << this->pop();
 }

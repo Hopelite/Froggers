@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "..\StackMachine\StackMachine.h"
-#include "..\StackMachine\StackIsEmptyException.h"
-#include "..\StackMachine\NotEnoughOperandsException.h"
-#include "..\StackMachine\DivisionByZeroException.h"
+#include "..\StackMachine\Exceptions\StackIsEmptyException.h"
+#include "..\StackMachine\Exceptions\NotEnoughOperandsException.h"
+#include "..\StackMachine\Exceptions\DivisionByZeroException.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

@@ -3,6 +3,11 @@
 #include "..\ConsoleLogger\ConsoleLogger.h"
 #include "..\StackMachine\StackMachineFileReader.h"
 
+void print(Stack* stack)
+{
+    std::cout << stack->pop() << std::endl;
+}
+
 int main(int argc, char* argv[])
 {
     if (argc > 3)
@@ -12,6 +17,7 @@ int main(int argc, char* argv[])
     }
 
     StackMachineFileReader fileReader(argv[1]);
+    fileReader.addOuterFunction("print", print);
     ConsoleLogger* logger;
     if (argc == 3)
     {
