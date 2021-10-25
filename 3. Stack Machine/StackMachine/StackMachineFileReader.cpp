@@ -10,6 +10,7 @@ StackMachineFileReader::StackMachineFileReader(const std::string& pathToFile)
 {
 	this->functions = new std::map<std::string, std::vector<std::string>>;
 
+	// Opens file and starts reading it's content.
 	std::ifstream fileStream(pathToFile);
 	if (!fileStream.is_open())
 	{
@@ -18,21 +19,26 @@ StackMachineFileReader::StackMachineFileReader(const std::string& pathToFile)
 	else
 	{
 		std::string fileString;
+		// While didn't reach end of file.
 		while (!fileStream.eof())
 		{
 			fileStream >> fileString;
+			// If string is beginning of function...
 			if (fileString == "function")
 			{
+				// ... then start reading it's body.
 				fileStream >> fileString;
 				std::string currentString;
 				std::vector<std::string> functionBody;
 				fileStream >> currentString;
+				// Skipping comments and other non-function content.
 				while (currentString != "{" && !fileStream.eof())
 				{
 					fileStream >> currentString;
 				}
 
 				fileStream >> currentString;
+				// Reading function's content until it's end.
 				while (currentString != "}" && !fileStream.eof())
 				{
 					// Logic of skipping comments.
@@ -46,10 +52,12 @@ StackMachineFileReader::StackMachineFileReader(const std::string& pathToFile)
 						fileStream >> currentString;
 					}
 
+					// Add non-comment function's elements.
 					functionBody.push_back(currentString);
 					fileStream >> currentString;
 				}
 
+				// Add function body to dictionary, where key is the function's name.
 				this->functions->insert(std::pair<std::string, std::vector<std::string>>(fileString, functionBody));
 			}
 		}
@@ -65,11 +73,13 @@ StackMachineFileReader::~StackMachineFileReader()
 
 void StackMachineFileReader::startReading()
 {
+	// Start from 'main' function.
 	this->parseFunction("main");
 }
 
 void StackMachineFileReader::parseFunction(std::string functionName)
 {
+	// If specified function doesn't exist throw an exception.
 	if (this->functions->find(functionName) == this->functions->end())
 	{
 		this->notify("Thrown exception: NoSuchFunctionException. Can't find function \"" + functionName + "\".\n");
@@ -123,6 +133,7 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 
 			if (lhs == rhs)
 			{
+				// Search specified label in the code below.
 				while (i < functionBody.size() && functionBody[i] != label)
 				{
 					i++;
@@ -140,11 +151,19 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 		}
 		else if (functionBody[i] == "callext")
 		{
-			std::cout << this->pop();
+			if (functionBody[++i] == "print")
+			{
+				this->print();
+			}
 		}
 	}
 
 	// If there is no "return" operator in function, throw an exception.
 	this->notify("Thrown exception: NoReturnPointException. Function \"" + functionName + "\" has no \"return\" operator.\n");
 	throw NoReturnPointException(functionName);
+}
+
+void StackMachineFileReader::print()
+{
+	std::cout << this->pop();
 }

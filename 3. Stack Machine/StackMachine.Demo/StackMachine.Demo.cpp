@@ -11,11 +11,13 @@
 
 // [X] TODO: Logger (IObserver) + Stack (ISubject)
 
-// [ ] TODO: Parser
+// [X] TODO: Parser
 
 int main()
 {
     StackMachineFileReader fl("C:\\Users\\Admin\\source\\repos\\BSUIR\\inputFile.txt");
+
+    // Uncomment next line to track program execution.
     //ConsoleLogger logger(&fl);
     fl.startReading();
 }

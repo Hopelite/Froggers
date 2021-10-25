@@ -17,5 +17,8 @@ private:
 	std::map<std::string, std::vector<std::string>>* functions;
 
 	void parseFunction(std::string functionName);
+
+	// Outer function
+	void print();
 };
 
