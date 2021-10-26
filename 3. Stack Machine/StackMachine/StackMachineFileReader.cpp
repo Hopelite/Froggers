@@ -136,10 +136,11 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 		else if (functionBody[i] == "ifeq")
 		{
 			int rhs = this->pop(), lhs = this->pop();
-			std::string label = functionBody[++i] + ":";
 
 			if (lhs == rhs)
 			{
+				std::string label = functionBody[++i] + ":";
+
 				// Search specified label in the code below.
 				while (i < functionBody.size() && functionBody[i] != label)
 				{
