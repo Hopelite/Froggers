@@ -9,6 +9,7 @@
 StackMachineFileReader::StackMachineFileReader(const std::string& pathToFile)
 {
 	this->functions = new std::map<std::string, std::vector<std::string>>;
+	this->outerFunctions = new std::map<std::string, std::function<void(Stack*)>>;
 
 	// Opens file and starts reading it's content.
 	std::ifstream fileStream(pathToFile);
@@ -69,12 +70,18 @@ StackMachineFileReader::StackMachineFileReader(const std::string& pathToFile)
 StackMachineFileReader::~StackMachineFileReader()
 {
 	delete this->functions;
+	delete this->outerFunctions;
 }
 
 void StackMachineFileReader::startReading()
 {
 	// Start from 'main' function.
 	this->parseFunction("main");
+}
+
+void StackMachineFileReader::addOuterFunction(std::string functionName, std::function<void(Stack*)> function)
+{
+	this->outerFunctions->insert(std::pair<std::string, std::function<void(Stack*)>>(functionName, function));
 }
 
 void StackMachineFileReader::parseFunction(std::string functionName)
@@ -159,19 +166,17 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 		}
 		else if (functionBody[i] == "callext")
 		{
-			if (functionBody[++i] == "print")
+			if (this->outerFunctions->find(functionName) == this->outerFunctions->end())
 			{
-				this->print();
+				// TODO: Implement NoSuchOuterFunctionException exception.
 			}
+
+			std::function<void(Stack*)> outerFunction = this->outerFunctions->find(functionBody[++i])->second;
+			outerFunction(this);
 		}
 	}
 
 	// If there is no "return" operator in function, throw an exception.
 	this->notify("Thrown exception: NoReturnPointException. Function \"" + functionName + "\" has no \"return\" operator.\n");
 	throw NoReturnPointException(functionName);
-}
-
-void StackMachineFileReader::print()
-{
-	std::cout << this->pop();
 }
