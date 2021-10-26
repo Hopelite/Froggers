@@ -32,5 +32,13 @@ int main(int argc, char* argv[])
         }
     }
 
-    fileReader.startReading();
+    try
+    {
+        fileReader.startReading();
+    }
+    catch (const std::exception& ex)
+    {
+        std::cout << "Exception thrown" << ex.what() << std::endl;
+        return -1;
+    }
 }

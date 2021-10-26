@@ -13,17 +13,11 @@ Stack::Stack()
 // Destructor deletes all elements in stack step by step.
 Stack::~Stack()
 {
-	this->detach();
 	while (this->top != nullptr)
-	{
-		// ISSUE: Have to detach logger first, because it can be deleted before stack destructor exectution.
-		// TODO: Somehow manage lifecycles of logger and stack.
-
-		this->pop();
-		//StackElement* elementToDelete = this->top;
-		//this->top = this->top->getNext();
-		//delete elementToDelete;
+	{this->pop();
 	}
+
+	this->detach();
 }
 
 int Stack::getCount()
