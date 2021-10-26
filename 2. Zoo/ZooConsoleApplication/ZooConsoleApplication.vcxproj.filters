@@ -48,6 +48,15 @@
     <ClCompile Include="Methods.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Racoon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bassariscus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Valchnep.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animal.h">
@@ -81,6 +90,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Fox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bassariscus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Racoon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Methods.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Valchnep.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

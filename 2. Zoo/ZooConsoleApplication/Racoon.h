@@ -2,7 +2,7 @@
 #include "Animal.h"
 #include "Methods.h"
 
-class Racoon : public virtual Animal, public virtual Methods
+class Racoon : private virtual Animal, public virtual Methods
 {
 public:
 	Racoon();

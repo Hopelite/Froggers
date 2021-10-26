@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bassariscus.cpp" />
     <ClCompile Include="Bat.cpp" />
     <ClCompile Include="Beaver.cpp" />
     <ClCompile Include="Cat.cpp" />
@@ -149,10 +150,13 @@
     <ClCompile Include="Fox.cpp" />
     <ClCompile Include="Methods.cpp" />
     <ClCompile Include="Platypus.cpp" />
+    <ClCompile Include="Racoon.cpp" />
+    <ClCompile Include="Valchnep.cpp" />
     <ClCompile Include="ZooConsoleApplication.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animal.h" />
+    <ClInclude Include="Bassariscus.h" />
     <ClInclude Include="Bat.h" />
     <ClInclude Include="Beaver.h" />
     <ClInclude Include="Cat.h" />
@@ -161,8 +165,11 @@
     <ClInclude Include="Duck.h" />
     <ClInclude Include="FlyingFox.h" />
     <ClInclude Include="Fox.h" />
+    <ClInclude Include="Methods.h" />
     <ClInclude Include="Platypus.h" />
+    <ClInclude Include="Racoon.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Valchnep.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ZooConsoleApplication.rc" />

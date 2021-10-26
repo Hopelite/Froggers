@@ -3,7 +3,7 @@
 #include "Animal.h"
 #include "Methods.h"
 
-class Bat : public virtual  Animal, public virtual Methods
+class Bat : public virtual Animal, public virtual Methods
 {
 public:
 	Bat();
