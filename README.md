@@ -12,5 +12,5 @@
 
 **Прогресс выполнения лабораторных работ:**
 - [x] [№1. Вектор](https://github.com/Hopelite/Froggers/tree/main/1.%20Vector)
-- [ ] [№2. Зоопарк](https://github.com/Hopelite/Froggers/tree/main/2.%20Zoo)
+- [x] [№2. Зоопарк](https://github.com/Hopelite/Froggers/tree/main/2.%20Zoo)
 - [ ] [№3. Стэковая машина](https://github.com/Hopelite/Froggers/tree/main/3.%20Stack%20Machine)
