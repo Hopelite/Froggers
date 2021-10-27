@@ -14,3 +14,4 @@
 - [x] [№1. Вектор](https://github.com/Hopelite/Froggers/tree/main/1.%20Vector)
 - [x] [№2. Зоопарк](https://github.com/Hopelite/Froggers/tree/main/2.%20Zoo)
 - [ ] [№3. Стэковая машина](https://github.com/Hopelite/Froggers/tree/main/3.%20Stack%20Machine)
+- [ ] [№4. Шаблонные функции для сортировки](https://github.com/Hopelite/Froggers/tree/main/4.%20Pattern%20Sorting%20Functions)
