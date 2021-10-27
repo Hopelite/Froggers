@@ -17,6 +17,8 @@ int main()
 
     SortingFunctions::bubbleSort(vect.begin(), vect.end());
     SortingFunctions::bubbleSort(begin(arr), end(arr));
+    //SortingFunctions::patienceSort(vect.begin(), vect.end());
+    //SortingFunctions::patienceSort(begin(arr), end(arr));
     for (size_t i = 0; i < vect.size(); i++)
     {
         cout << vect[i] << endl;
@@ -24,6 +26,6 @@ int main()
 
     for (size_t i = 0; i < 5; i++)
     {
-        cout << vect[i] << endl;
+        cout << arr[i] << endl;
     }
 }
