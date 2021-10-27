@@ -3,22 +3,20 @@
 class SortingFunctions
 {
 public:
-	template <typename T>
-	static void bubbleSort(T& collection)
+	template <typename Iterator>
+	static void bubbleSort(Iterator beginning, Iterator end)
 	{
-		typename T::iterator outerIterator = collection.begin();
-		typename T::iterator innerIterator;
-		while (outerIterator != collection.end())
+		while (beginning != end)
 		{
-			for (innerIterator = outerIterator; innerIterator != collection.end(); ++innerIterator)
+			for (Iterator innerIterator = beginning; innerIterator != end; ++innerIterator)
 			{
-				if (*outerIterator > *innerIterator)
+				if (*beginning > *innerIterator)
 				{
-					std::iter_swap(outerIterator, innerIterator);
+					std::iter_swap(beginning, innerIterator);
 				}
 			}
 
-			++outerIterator;
+			++beginning;
 		}
 	}
 
