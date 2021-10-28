@@ -21,5 +21,6 @@ private:
 	std::map<std::string, std::function<void(Stack*)>>* outerFunctions;
 
 	void parseFunction(std::string functionName);
+	void findLabel(std::vector<std::string>& functionBody, std::string label, int index);
 };
 

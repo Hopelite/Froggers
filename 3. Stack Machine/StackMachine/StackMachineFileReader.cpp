@@ -141,57 +141,20 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 
 			if (lhs == rhs)
 			{
-				std::string label = functionBody[++i] + ":";
-
-				// Search specified label in the code below.
-				while (i < functionBody.size() && functionBody[i] != label)
-				{
-					i++;
-				}
-
-				if (i == functionBody.size())
-				{
-					this->notify("Thrown exception: NoSuchLabelException. Can't find label \"" + label + "\".\n");
-					throw NoSuchLabelException(label);
-				}
+				this->findLabel(functionBody, functionBody[++i], i);
 			}
 		}
 		else if (functionBody[i] == "goto")
 		{
-			std::string label = functionBody[++i] + ":";
-
-			// Search specified label in the code below.
-			while (i < functionBody.size() && functionBody[i] != label)
-			{
-				i++;
-			}
-
-			if (i == functionBody.size())
-			{
-				this->notify("Thrown exception: NoSuchLabelException. Can't find label \"" + label + "\".\n");
-				throw NoSuchLabelException(label);
-			}
+			this->findLabel(functionBody, functionBody[++i], i);
 		}
 		else if (functionBody[i] == "ifgr")
 		{
-			// TODO: Implement 'ifgr' operator logic.
 			int lhs = this->pop(), rhs = this->pop();
 
 			if (lhs > rhs)
 			{
-				std::string label = functionBody[++i] + ":";
-
-				// Search specified label in the code below.
-				while (i < functionBody.size() && functionBody[i] != label)
-				{
-					i++;
-				}
-
-				if (i == functionBody.size())
-				{
-					this->notify("Thrown exception: NoSuchLabelException. Can't find label \"" + label + "\".\n");
-					throw NoSuchLabelException(label);
-				}
+				this->findLabel(functionBody, functionBody[++i], i);
 			}
 		}
 		else if (functionBody[i] == "return")
@@ -214,4 +177,21 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 	// If there is no "return" operator in function, throw an exception.
 	this->notify("Thrown exception: NoReturnPointException. Function \"" + functionName + "\" has no \"return\" operator.\n");
 	throw NoReturnPointException(functionName);
+}
+
+void StackMachineFileReader::findLabel(std::vector<std::string>& functionBody, std::string labelName, int index)
+{
+	std::string label = labelName + ":";
+
+	// Search specified label in the code below.
+	while (index < functionBody.size() && functionBody[index] != label)
+	{
+		index++;
+	}
+
+	if (index == functionBody.size())
+	{
+		this->notify("Thrown exception: NoSuchLabelException. Can't find label \"" + labelName + "\".\n");
+		throw NoSuchLabelException(labelName);
+	}
 }
