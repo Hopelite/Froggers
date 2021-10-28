@@ -3,7 +3,7 @@
 #include "Exceptions/NoSuchFileException.h"
 #include "Exceptions/NoSuchFunctionException.h"
 #include "Exceptions/NoReturnPointException.h"
-#include "NoSuchLabelException.h"
+#include "Exceptions/NoSuchLabelException.h"
 #include <iostream>
 #include <map>
 
