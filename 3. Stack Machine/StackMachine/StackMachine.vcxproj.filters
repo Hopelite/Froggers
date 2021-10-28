@@ -54,10 +54,13 @@
     <ClInclude Include="Exceptions\StackIsEmptyException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="NoSuchLabelException.h">
+    <ClInclude Include="Exceptions\NoSuchOuterFunctionException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
-    <ClInclude Include="Exceptions\NoSuchOuterFunctionException.h">
+    <ClInclude Include="FunctionNotClosedException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Exceptions\NoSuchLabelException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
   </ItemGroup>

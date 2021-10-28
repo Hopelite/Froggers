@@ -10,7 +10,7 @@ void print(Stack* stack)
 
 int main(int argc, char* argv[])
 {
-    if (argc > 3)
+    if (argc > 3 && argc < 2)
     {
         std::cout << "Invalid number of input arguments. You can enter only <pathToFile> with additional \"-debug\" argument." << std::endl;
         return -1;

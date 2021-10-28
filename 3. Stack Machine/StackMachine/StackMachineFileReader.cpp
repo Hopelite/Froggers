@@ -17,6 +17,7 @@ StackMachineFileReader::StackMachineFileReader(const std::string& pathToFile)
 	std::ifstream fileStream(pathToFile);
 	if (!fileStream.is_open())
 	{
+		this->notify("Thrown exception: NoSuchFileException. No such file or directory.\n");
 		throw NoSuchFileException();
 	}
 	else
@@ -95,8 +96,9 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 		throw NoSuchFunctionException(functionName);
 	}
 
+	this->notify("Call function \"" + functionName + "\".\n");
 	std::vector<std::string> functionBody = this->functions->find(functionName)->second;
-	for (size_t i = 0; i < functionBody.size(); i++)
+	for (int i = 0; i < functionBody.size(); i++)
 	{
 		if (functionBody[i] == "push")
 		{
@@ -139,8 +141,10 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 		{
 			int rhs = this->pop(), lhs = this->pop();
 
+			this->notify("Compare number " + std::to_string(lhs) + " to number " + std::to_string(rhs) + ".\n");
 			if (lhs == rhs)
 			{
+				this->notify("Numbers are equal.\n");
 				this->findLabel(functionBody, functionBody[++i], i);
 			}
 		}
@@ -152,24 +156,29 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 		{
 			int lhs = this->pop(), rhs = this->pop();
 
+			this->notify("Compare number " + std::to_string(lhs) + " to number " + std::to_string(rhs) + ".\n");
 			if (lhs > rhs)
 			{
+				this->notify("Number " + std::to_string(lhs) + "is greater than " + std::to_string(rhs) + ".\n");
 				this->findLabel(functionBody, functionBody[++i], i);
 			}
 		}
 		else if (functionBody[i] == "return")
 		{
+			this->notify("Return from function \"" + functionName + "\".\n");
 			return;
 		}
 		else if (functionBody[i] == "callext")
 		{
-			if (this->outerFunctions->find(functionName) == this->outerFunctions->end())
+			this->notify("Searching outer function \"" + functionBody[++i] + "\".\n");
+			if (this->outerFunctions->find(functionBody[i]) == this->outerFunctions->end())
 			{
-				this->notify("Thrown exception: NoSuchOuterFunctionException. Can't find outer function \"" + functionName + "\".\n");
-				throw NoSuchOuterFunctionException(functionName);
+				this->notify("Thrown exception: NoSuchOuterFunctionException. Can't find outer function \"" + functionBody[i] + "\".\n");
+				throw NoSuchOuterFunctionException(functionBody[i]);
 			}
 
-			std::function<void(Stack*)> outerFunction = this->outerFunctions->find(functionBody[++i])->second;
+			this->notify("Call outer function \"" + functionBody[i] + "\".\n");
+			std::function<void(Stack*)> outerFunction = this->outerFunctions->find(functionBody[i])->second;
 			outerFunction(this);
 		}
 	}
@@ -179,8 +188,9 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 	throw NoReturnPointException(functionName);
 }
 
-void StackMachineFileReader::findLabel(std::vector<std::string>& functionBody, std::string labelName, int index)
+void StackMachineFileReader::findLabel(std::vector<std::string>& functionBody, std::string labelName, int& index)
 {
+	this->notify("Searching label \"" + labelName + "\".\n");
 	std::string label = labelName + ":";
 
 	// Search specified label in the code below.
@@ -194,4 +204,6 @@ void StackMachineFileReader::findLabel(std::vector<std::string>& functionBody, s
 		this->notify("Thrown exception: NoSuchLabelException. Can't find label \"" + labelName + "\".\n");
 		throw NoSuchLabelException(labelName);
 	}
+
+	this->notify("Moving to label \"" + labelName + "\".\n");
 }
