@@ -158,6 +158,7 @@
     <ClInclude Include="Exceptions\NotEnoughOperandsException.h" />
     <ClInclude Include="Exceptions\StackIsEmptyException.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="NoSuchLabelException.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="StackElement.h" />
     <ClInclude Include="Stack.h" />

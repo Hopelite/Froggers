@@ -54,6 +54,9 @@
     <ClInclude Include="Exceptions\StackIsEmptyException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="NoSuchLabelException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Stack.cpp">

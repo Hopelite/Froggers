@@ -3,6 +3,7 @@
 #include "Exceptions/NoSuchFileException.h"
 #include "Exceptions/NoSuchFunctionException.h"
 #include "Exceptions/NoReturnPointException.h"
+#include "NoSuchLabelException.h"
 #include <iostream>
 #include <map>
 
@@ -149,13 +150,24 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 
 				if (i == functionBody.size())
 				{
-					// TODO: Implement NoSuchLabelException exception.
+					throw NoSuchLabelException(label);
 				}
 			}
 		}
 		else if (functionBody[i] == "goto")
 		{
-			// TODO: Implement 'goto' operator logic.
+			std::string label = functionBody[++i] + ":";
+
+			// Search specified label in the code below.
+			while (i < functionBody.size() && functionBody[i] != label)
+			{
+				i++;
+			}
+
+			if (i == functionBody.size())
+			{
+				throw NoSuchLabelException(label);
+			}
 		}
 		else if (functionBody[i] == "ifgr")
 		{
