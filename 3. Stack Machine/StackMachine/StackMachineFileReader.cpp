@@ -1,9 +1,10 @@
 #include "pch.h"
 #include "StackMachineFileReader.h"
+#include "Exceptions/NoReturnPointException.h"
 #include "Exceptions/NoSuchFileException.h"
 #include "Exceptions/NoSuchFunctionException.h"
-#include "Exceptions/NoReturnPointException.h"
 #include "Exceptions/NoSuchLabelException.h"
+#include "Exceptions/NoSuchOuterFunctionException.h"
 #include <iostream>
 #include <map>
 
@@ -150,6 +151,7 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 
 				if (i == functionBody.size())
 				{
+					this->notify("Thrown exception: NoSuchLabelException. Can't find label \"" + label + "\".\n");
 					throw NoSuchLabelException(label);
 				}
 			}
@@ -166,12 +168,31 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 
 			if (i == functionBody.size())
 			{
+				this->notify("Thrown exception: NoSuchLabelException. Can't find label \"" + label + "\".\n");
 				throw NoSuchLabelException(label);
 			}
 		}
 		else if (functionBody[i] == "ifgr")
 		{
 			// TODO: Implement 'ifgr' operator logic.
+			int lhs = this->pop(), rhs = this->pop();
+
+			if (lhs > rhs)
+			{
+				std::string label = functionBody[++i] + ":";
+
+				// Search specified label in the code below.
+				while (i < functionBody.size() && functionBody[i] != label)
+				{
+					i++;
+				}
+
+				if (i == functionBody.size())
+				{
+					this->notify("Thrown exception: NoSuchLabelException. Can't find label \"" + label + "\".\n");
+					throw NoSuchLabelException(label);
+				}
+			}
 		}
 		else if (functionBody[i] == "return")
 		{
@@ -181,7 +202,8 @@ void StackMachineFileReader::parseFunction(std::string functionName)
 		{
 			if (this->outerFunctions->find(functionName) == this->outerFunctions->end())
 			{
-				// TODO: Implement NoSuchOuterFunctionException exception.
+				this->notify("Thrown exception: NoSuchOuterFunctionException. Can't find outer function \"" + functionName + "\".\n");
+				throw NoSuchOuterFunctionException(functionName);
 			}
 
 			std::function<void(Stack*)> outerFunction = this->outerFunctions->find(functionBody[++i])->second;

@@ -155,6 +155,7 @@
     <ClInclude Include="Exceptions\NoReturnPointException.h" />
     <ClInclude Include="Exceptions\NoSuchFileException.h" />
     <ClInclude Include="Exceptions\NoSuchFunctionException.h" />
+    <ClInclude Include="Exceptions\NoSuchOuterFunctionException.h" />
     <ClInclude Include="Exceptions\NotEnoughOperandsException.h" />
     <ClInclude Include="Exceptions\StackIsEmptyException.h" />
     <ClInclude Include="framework.h" />

@@ -57,6 +57,9 @@
     <ClInclude Include="NoSuchLabelException.h">
       <Filter>Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="Exceptions\NoSuchOuterFunctionException.h">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Stack.cpp">
