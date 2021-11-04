@@ -46,22 +46,16 @@ StackMachineFileReader::StackMachineFileReader(const std::string& pathToFile)
 
 				while (currentString != "}" && !fileStream.eof())
 				{
-					do {
+					while (currentString == "#")
+					{
 						while (fileStream.peek() != '\n')
 						{
 							fileStream >> currentString;
 						}
 
 						fileStream >> currentString;
-
-					} while (currentString == "#");
-
-					// Add non-comment function's elements.
-					if (currentString == "push")
-					{
-						functionBody.push_back(currentString);
-						fileStream >> currentString;
 					}
+
 					functionBody.push_back(currentString);
 					fileStream >> currentString;
 				}
