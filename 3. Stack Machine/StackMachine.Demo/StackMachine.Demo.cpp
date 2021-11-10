@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
 
     try
     {
-        fileReader.startReading();
+        fileReader.startParsing();
     }
     catch (const std::exception& ex)
     {

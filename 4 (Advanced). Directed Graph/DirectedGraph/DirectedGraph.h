@@ -1,12 +1,13 @@
 #pragma once
 #include <map>
 #include <vector>
-#include <iostream>
+#include <ostream>
 
 template <typename T>
 class DirectedGraph
 {
-friend std::ostream& operator<<(std::ostream& out, const DirectedGraph<T>& vector);
+template <typename U>
+friend std::ostream& operator<<(std::ostream& out, const DirectedGraph<U>& vector);
 
 public:
 	DirectedGraph()
@@ -26,12 +27,7 @@ public:
 
 	bool isEmpty()
 	{
-		if (this->adjacencyList->size() == 0)
-		{
-			return true;
-		}
-
-		return false;
+		return this->adjacencyList->size() == 0;
 	}
 
 	void clear()
@@ -59,13 +55,24 @@ public:
 
 	int getVertexDegree(const T& vertex)
 	{
+		if (!this->vertexAlreadyInGraphCheck(vertex))
+		{
+			// TODO: throw NoSuchElementException exception
+		}
+
+		auto iterator = this->adjacencyList->find(vertex);
+		return (*iterator).second.size();
+	}
+
+	int getArcDegree(const T& start, const T& end)
+	{
 		// TODO: implement method
 		return -1;
 	}
 
 	void addVertex(T vertex)
 	{
-		if (this->elementAlreadyInGraphCheck(vertex))
+		if (this->vertexAlreadyInGraphCheck(vertex))
 		{
 			// TODO: throw ElementAlreadyInGraphException exception
 		}
@@ -75,25 +82,31 @@ public:
 
 	void deleteVertex(T vertex)
 	{
-		if (!this->elementAlreadyInGraphCheck(vertex))
+		if (!this->vertexAlreadyInGraphCheck(vertex))
 		{
 			// TODO: throw NoSuchElementException exception
 		}
 
 		this->adjacencyList->erase(vertex);
+		// TODO: implement logic of arcs deleting
 	}
 
 	void addArc(const T& start, const T& end)
 	{
-		if (!this->elementAlreadyInGraphCheck(start))
+		if (!this->vertexAlreadyInGraphCheck(start))
 		{
 			// TODO: throw NoSuchElementException exception
 		}
 
-		if (!this->elementAlreadyInGraphCheck(end))
+		if (!this->vertexAlreadyInGraphCheck(end))
 		{
 			// TODO: throw NoSuchElementException exception
 		}
+
+		auto iterator = this->adjacencyList->find(start);
+
+		// TODO: add chech whether arc already exists
+		(*iterator).second.push_back(end);
 
 		// TODO: implement method
 	}
@@ -148,7 +161,7 @@ public:
 private:
 	std::map<T, std::vector<T>>* adjacencyList;
 
-	bool elementAlreadyInGraphCheck(const T vertex)
+	bool vertexAlreadyInGraphCheck(const T vertex)
 	{
 		if (this->adjacencyList->find(vertex) == this->adjacencyList->end())
 		{
