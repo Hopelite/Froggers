@@ -12,61 +12,7 @@ StackMachineFileReader::StackMachineFileReader(const std::string& pathToFile)
 {
 	this->functions = new std::map<std::string, std::vector<std::string>>;
 	this->outerFunctions = new std::map<std::string, std::function<void(Stack*)>>;
-
-	// Opens file and starts reading it's content.
-	std::ifstream fileStream(pathToFile);
-	if (!fileStream.is_open())
-	{
-		this->notify("Thrown exception: NoSuchFileException. No such file or directory.\n");
-		throw NoSuchFileException();
-	}
-	else
-	{
-		std::string fileString;
-		// While didn't reach end of file.
-		while (!fileStream.eof())
-		{
-			fileStream >> fileString;
-			// If string is beginning of function...
-			if (fileString == "function")
-			{
-				// ... then start reading it's body.
-				fileStream >> fileString;
-				std::string currentString;
-				std::vector<std::string> functionBody;
-				fileStream >> currentString;
-				// Skipping comments and other non-function content.
-				while (currentString != "{" && !fileStream.eof())
-				{
-					fileStream >> currentString;
-				}
-
-				fileStream >> currentString;
-				// Reading function's content until it's end.
-
-				while (currentString != "}" && !fileStream.eof())
-				{
-					while (currentString == "#")
-					{
-						while (fileStream.peek() != '\n')
-						{
-							fileStream >> currentString;
-						}
-
-						fileStream >> currentString;
-					}
-
-					functionBody.push_back(currentString);
-					fileStream >> currentString;
-				}
-
-				// Add function body to dictionary, where key is the function's name.
-				this->functions->insert(std::pair<std::string, std::vector<std::string>>(fileString, functionBody));
-			}
-		}
-	}
-
-	fileStream.close();
+	this->openAndReadFile(pathToFile);
 }
 
 StackMachineFileReader::~StackMachineFileReader()
@@ -75,7 +21,7 @@ StackMachineFileReader::~StackMachineFileReader()
 	delete this->outerFunctions;
 }
 
-void StackMachineFileReader::startReading()
+void StackMachineFileReader::startParsing()
 {
 	// Start from 'main' function.
 	this->parseFunction("main");
@@ -205,4 +151,83 @@ void StackMachineFileReader::findLabel(std::vector<std::string>& functionBody, s
 	}
 
 	this->notify("Moving to label \"" + labelName + "\".\n");
+}
+
+void StackMachineFileReader::openAndReadFile(const std::string& pathToFile)
+{
+	// Opens file and starts reading it's content.
+	std::ifstream fileStream(pathToFile);
+	if (!fileStream.is_open())
+	{
+		this->notify("Thrown exception: NoSuchFileException. No such file or directory.\n");
+		throw NoSuchFileException();
+	}
+	else
+	{
+		this->readFile(fileStream);
+	}
+
+	fileStream.close();
+}
+
+void StackMachineFileReader::readFile(std::ifstream& fileStream)
+{
+	std::string fileString;
+	// While didn't reach end of file.
+	while (!fileStream.eof())
+	{
+		fileStream >> fileString;
+		// If string is beginning of function...
+		if (fileString == "function")
+		{
+			this->readFunction(fileStream, fileString);
+		}
+	}
+}
+
+void StackMachineFileReader::readFunction(std::ifstream& fileStream, std::string& fileString)
+{
+	const std::string beginningOfFunction = "{", endOfFunction = "}";
+
+	fileStream >> fileString;
+	std::string currentString;
+	std::vector<std::string> functionBody;
+	fileStream >> currentString;
+	// Skipping comments and other non-function content.
+	while (currentString != beginningOfFunction && !fileStream.eof())
+	{
+		fileStream >> currentString;
+	}
+
+	fileStream >> currentString;
+
+	this->readTill(endOfFunction, fileStream, currentString, functionBody);
+
+	// Add function body to dictionary, where key is the function's name.
+	this->functions->insert(std::pair<std::string, std::vector<std::string>>(fileString, functionBody));
+}
+
+void StackMachineFileReader::skipComment(std::ifstream& fileStream, std::string& currentString)
+{
+	const std::string beginningOfComment = "#";
+
+	while (currentString == beginningOfComment)
+	{
+		while (fileStream.peek() != '\n')
+		{
+			fileStream >> currentString;
+		}
+
+		fileStream >> currentString;
+	}
+}
+
+void StackMachineFileReader::readTill(std::string symbol, std::ifstream& fileStream, std::string& currentString, std::vector<std::string>& functionBody)
+{
+	while (currentString != symbol && !fileStream.eof())
+	{
+		this->skipComment(fileStream, currentString);
+		functionBody.push_back(currentString);
+		fileStream >> currentString;
+	}
 }
