@@ -2,6 +2,8 @@
 #include <map>
 #include <vector>
 #include <ostream>
+#include <iterator>
+#include <cstddef>
 
 template <typename T>
 class DirectedGraph
@@ -24,6 +26,78 @@ public:
 	{
 		delete this->adjacencyList;
 	}
+
+
+	class Iterator
+	{
+	public:
+		using category = std::bidirectional_iterator_tag;
+		using difference_type = std::ptrdiff_t;
+
+		Iterator(T* ptr) : _ptr(ptr) {};
+
+		T& operator*()
+		{
+			return *_ptr;
+		}
+
+		T* operator->()
+		{
+			return _ptr;
+		}
+
+		Iterator& operator++() //prefix
+		{
+			_ptr++;
+			return *this;
+		}
+
+		Iterator operator++(int) //postfix
+		{
+			Iterator temporary = *this;
+			++(*this);
+			return temporary;
+		}
+
+		Iterator& operator--() //prefix
+		{
+			_ptr--;
+			return *this;
+		}
+
+		Iterator operator--(int) //postfix
+		{
+			Iterator temporary = *this;
+			--(*this);
+			return temporary;
+		}
+
+		bool operator==(const Iterator& b)
+		{
+			return _ptr == b._ptr;
+		}
+
+
+		friend bool operator!=(const Iterator& b)
+		{
+			return !(_ptr == b._ptr);
+		}
+
+
+	private:
+		T* _ptr;
+	};
+
+	Iterator begin()
+	{
+		return this->adjacencyList->begin();
+	}
+
+	Iterator end()
+	{
+		return this->adjacencyList->end();
+	}
+
 
 	bool isEmpty()
 	{
