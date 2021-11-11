@@ -25,6 +25,13 @@ int main()
     dg.addVertex(9);
     dg.addVertex(0);
     dg.addVertex(1);
+    dg.addVertex(5);
+    dg.addVertex(9);
+    dg.addVertex(-11);
+    dg.addVertex(92);
+    dg.addVertex(87);
+    dg.addVertex(13);
+    dg.addVertex(52);
 
     for (DiGraph<int>::Iterator it = dg.begin(); it != dg.end(); it++)
     {

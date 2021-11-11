@@ -33,7 +33,7 @@ public:
 	class Iterator
 	{
 	public:
-		using category = std::bidirectional_iterator_tag;
+		using category = std::random_access_iterator_tag;
 		using difference_type = std::ptrdiff_t;
 		using pointer = std::pair<T, std::vector<T>>*;
 		using reference = std::pair<T, std::vector<T>>&;
@@ -89,7 +89,6 @@ public:
 			return !(a._ptr == b._ptr);
 		}
 
-
 	private:
 		pointer _ptr;
 	};
@@ -101,8 +100,7 @@ public:
 
 	Iterator end()
 	{
-		return nullptr;
-		return Iterator(&adjacencyList[adjacencyList.size()]);
+		return Iterator(&adjacencyList[adjacencyList.size() - 1] + 1);
 	}
 
 private:
