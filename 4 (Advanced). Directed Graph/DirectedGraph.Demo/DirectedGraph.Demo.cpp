@@ -1,27 +1,10 @@
 #include <iostream>
-//#include "..\DirectedGraph\DirectedGraph.h"
-//#include "..\DirectedGraph\DirectedGraph.cpp"
-#include "..\DirectedGraph\DiGraph.h"
+#include "..\DirectedGraph\DirectedGraph.h"
+#include "..\DirectedGraph\DirectedGraph.cpp"
 
 int main()
 {
-    /*DirectedGraph<char> graph;
-    graph.addVertex('A');
-    graph.addVertex('B');
-    graph.addVertex('C');
-    graph.addArc('A', 'B');
-    graph.addArc('A', 'C');
-    graph.addArc('B', 'C');
-
-    std::cout << graph;
-    std::cout << "Hello World!\n";
-
-    for (DirectedGraph<char>::Iterator it = graph.begin(); it != graph.end(); it++)
-    {
-        std::cout << *it;
-    }*/
-
-    DiGraph<int> dg;
+    DirectedGraph<int> dg;
     dg.addVertex(9);
     dg.addVertex(0);
     dg.addVertex(1);
@@ -33,8 +16,13 @@ int main()
     dg.addVertex(13);
     dg.addVertex(52);
 
-    for (DiGraph<int>::Iterator it = dg.begin(); it != dg.end(); it++)
+    for (auto it = dg.beginVertexIterator(); it != dg.endVertexIterator(); it++)
     {
-        std::cout << it->first << "\n";
+        std::cout << (*it) << std::endl;
+    };
+
+    for (auto it = dg.beginEdgesIterator(); it != dg.endEdgesIterator(); it++)
+    {
+        std::cout << '(' << (*it).first << ',' << (*it).second << ')' << std::endl;
     }
 }

@@ -3,7 +3,7 @@
 #include <vector>
 #include <ostream>
 #include <iterator>
-#include <cstddef>
+#include <utility>
 
 template <typename T>
 class DirectedGraph
@@ -12,96 +12,218 @@ template <typename U>
 friend std::ostream& operator<<(std::ostream& out, const DirectedGraph<U>& vector);
 
 public:
-	DirectedGraph()
-	{
-		this->adjacencyList = new std::map<T, std::vector<T>>();
-	}
 
-	DirectedGraph(const DirectedGraph& graph)
-	{
-		this->adjacencyList = new std::map<T, std::vector<T>>(*graph.adjacencyList);
-	}
-
-	~DirectedGraph()
-	{
-		delete this->adjacencyList;
-	}
-
-
-	class Iterator
+	class AdjacentVertexesIterator
 	{
 	public:
-		using category = std::bidirectional_iterator_tag;
-		using difference_type = std::ptrdiff_t;
+		using pointer = std::pair<T, std::vector<T>>*;
+		using reference = std::pair<T, std::vector<T>>&;
 
-		Iterator(T* ptr) : _ptr(ptr) {};
+		AdjacentVertexesIterator(pointer ptr) : _ptr(ptr) {};
 
-		T& operator*()
+		reference operator*() const
 		{
 			return *_ptr;
 		}
 
-		T* operator->()
+		pointer operator->()
 		{
 			return _ptr;
 		}
 
-		Iterator& operator++() //prefix
+		AdjacentVertexesIterator& operator++() //prefix
 		{
 			_ptr++;
 			return *this;
 		}
 
-		Iterator operator++(int) //postfix
+		AdjacentVertexesIterator operator++(int) //postfix
 		{
-			Iterator temporary = *this;
+			AdjacentVertexesIterator temporary = *this;
 			++(*this);
 			return temporary;
 		}
 
-		Iterator& operator--() //prefix
+		AdjacentVertexesIterator& operator--() //prefix
 		{
 			_ptr--;
 			return *this;
 		}
 
-		Iterator operator--(int) //postfix
+		AdjacentVertexesIterator operator--(int) //postfix
 		{
-			Iterator temporary = *this;
+			AdjacentVertexesIterator temporary = *this;
 			--(*this);
 			return temporary;
 		}
 
-		bool operator==(const Iterator& b)
+		bool operator==(const AdjacentVertexesIterator& b)
 		{
-			return _ptr == b._ptr;
+			return this->_ptr == b._ptr;
 		}
 
-
-		friend bool operator!=(const Iterator& b)
+		bool operator!=(const AdjacentVertexesIterator& b)
 		{
-			return !(_ptr == b._ptr);
+			return !(this->_ptr == b._ptr);
 		}
-
 
 	private:
-		T* _ptr;
+		pointer _ptr;
 	};
 
-	Iterator begin()
+	AdjacentVertexesIterator begin()
 	{
-		return this->adjacencyList->begin();
+		return AdjacentVertexesIterator(&adjacencyList[0]);
 	}
 
-	Iterator end()
+	AdjacentVertexesIterator end()
 	{
-		return this->adjacencyList->end();
+		return AdjacentVertexesIterator(&adjacencyList[adjacencyList.size() - 1] + 1);
 	}
 
+	class VertexIterator
+	{
+	public:
+		using pointer = std::pair<T, std::vector<T>>*;
+
+		VertexIterator(pointer ptr) : iterator(ptr)
+		{
+			this->iterator = AdjacentVertexesIterator(ptr);
+		}
+
+		T operator*() const
+		{
+			return (*iterator).first;
+		}
+
+		VertexIterator& operator++() //prefix
+		{
+			this->iterator++;
+			return *this;
+		}
+
+		VertexIterator operator++(int) //postfix
+		{
+			VertexIterator temporary = *this;
+			++(*this);
+			return temporary;
+		}
+
+		VertexIterator& operator--() //prefix
+		{
+			this->iterator--;
+			return *this;
+		}
+
+		VertexIterator operator--(int) //postfix
+		{
+			VertexIterator temporary = *this;
+			--(*this);
+			return temporary;
+		}
+
+		bool operator==(const VertexIterator& b)
+		{
+			return this->iterator == b.iterator;
+		}
+
+		bool operator!=(const VertexIterator& b)
+		{
+			return !(this->iterator == b.iterator);
+		}
+
+	private:
+		AdjacentVertexesIterator iterator;
+	};
+
+	VertexIterator beginVertexIterator()
+	{
+		return VertexIterator(&adjacencyList[0]);
+	}
+
+	VertexIterator endVertexIterator()
+	{
+		return VertexIterator(&adjacencyList[adjacencyList.size() - 1] + 1);
+	}
+
+	class EdgesIterator 
+	{
+	public:
+		using pointer = std::pair<T, std::vector<T>>*;
+
+		EdgesIterator(pointer ptr) : iterator(ptr)
+		{
+			this->iterator = AdjacentVertexesIterator(ptr);
+		}
+
+		std::pair<T, T> operator*()
+		{
+			return std::make_pair((*this->iterator).first, (*this->adjacentVertexes));
+		}
+
+		EdgesIterator& operator++() //prefix
+		{
+			if (this->adjacentVertexes == (*this->iterator).second.end())
+			{
+				this->iterator++;
+				this->adjacentVertexes = (*this->iterator).second.begin();
+			}
+			else
+			{
+				this->adjacentVertexes++;
+			}
+
+			return *this;
+		}
+
+		EdgesIterator operator++(int) //postfix
+		{
+			EdgesIterator temporary = *this;
+			++(*this);
+			return temporary;
+		}
+
+		//EdgesIterator& operator--() //prefix
+		//{
+		//	this->iterator--;
+		//	return *this;
+		//}
+
+		//EdgesIterator operator--(int) //postfix
+		//{
+		//	EdgesIterator temporary = *this;
+		//	--(*this);
+		//	return temporary;
+		//}
+
+		bool operator==(const EdgesIterator& b)
+		{
+			return this->iterator == b.iterator;
+		}
+
+		bool operator!=(const EdgesIterator& b)
+		{
+			return !(this->iterator == b.iterator);
+		}
+
+	private:
+		AdjacentVertexesIterator iterator;
+		std::vector<T>::iterator adjacentVertexes;
+	};
+
+	EdgesIterator beginEdgesIterator()
+	{
+		return EdgesIterator(&adjacencyList[0]);
+	}
+
+	EdgesIterator endEdgesIterator()
+	{
+		return EdgesIterator(&adjacencyList[adjacencyList.size() - 1] + 1);
+	}
 
 	bool isEmpty()
 	{
-		return this->adjacencyList->size() == 0;
+		return this->adjacencyList.size() == 0;
 	}
 
 	void clear()
@@ -111,14 +233,14 @@ public:
 
 	int getNumberOfVertexes()
 	{
-		return this->adjacencyList->size();
+		return this->adjacencyList.size();
 	}
 
 	int getNumberOfArcs()
 	{
 		int numberOfArcs = 0;
-		auto iterator = this->adjacencyList->begin();
-		while (iterator != this->adjacencyList->end())
+		auto iterator = this->adjacencyList.begin();
+		while (iterator != this->adjacencyList.end())
 		{
 			numberOfArcs += iterator->second.size();
 			iterator++;
@@ -129,13 +251,7 @@ public:
 
 	int getVertexDegree(const T& vertex)
 	{
-		if (!this->vertexAlreadyInGraphCheck(vertex))
-		{
-			// TODO: throw NoSuchElementException exception
-		}
-
-		auto iterator = this->adjacencyList->find(vertex);
-		return (*iterator).second.size();
+		return -1;
 	}
 
 	int getArcDegree(const T& start, const T& end)
@@ -146,41 +262,36 @@ public:
 
 	void addVertex(T vertex)
 	{
-		if (this->vertexAlreadyInGraphCheck(vertex))
-		{
-			// TODO: throw ElementAlreadyInGraphException exception
-		}
-
-		this->adjacencyList->insert(std::pair<T,std::vector<T>>(vertex, std::vector<T>()));
+		std::vector<T> v = {};
+		this->adjacencyList.push_back(std::pair<T, std::vector<T>>(vertex, v));
 	}
 
 	void deleteVertex(T vertex)
 	{
-		if (!this->vertexAlreadyInGraphCheck(vertex))
-		{
-			// TODO: throw NoSuchElementException exception
-		}
-
-		this->adjacencyList->erase(vertex);
+		//if (!this->vertexAlreadyInGraphCheck(vertex))
+		//{
+		//	// TODO: throw NoSuchElementException exception
+		//}
+		
 		// TODO: implement logic of arcs deleting
 	}
 
 	void addArc(const T& start, const T& end)
 	{
-		if (!this->vertexAlreadyInGraphCheck(start))
-		{
-			// TODO: throw NoSuchElementException exception
-		}
+		//if (!this->vertexAlreadyInGraphCheck(start))
+		//{
+		//	// TODO: throw NoSuchElementException exception
+		//}
 
-		if (!this->vertexAlreadyInGraphCheck(end))
-		{
-			// TODO: throw NoSuchElementException exception
-		}
+		//if (!this->vertexAlreadyInGraphCheck(end))
+		//{
+		//	// TODO: throw NoSuchElementException exception
+		//}
 
-		auto iterator = this->adjacencyList->find(start);
+		//auto iterator = this->adjacencyList->find(start);
 
 		// TODO: add chech whether arc already exists
-		(*iterator).second.push_back(end);
+		//(*iterator).second.push_back(end);
 
 		// TODO: implement method
 	}
@@ -233,16 +344,6 @@ public:
 	}
 
 private:
-	std::map<T, std::vector<T>>* adjacencyList;
-
-	bool vertexAlreadyInGraphCheck(const T vertex)
-	{
-		if (this->adjacencyList->find(vertex) == this->adjacencyList->end())
-		{
-			return false;
-		}
-
-		return true;
-	}
+	std::vector<std::pair<T, std::vector<T>>> adjacencyList;
 };
 
