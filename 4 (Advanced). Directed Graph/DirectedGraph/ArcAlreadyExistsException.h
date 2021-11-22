@@ -6,7 +6,7 @@ template<typename T>
 class ArcAlreadyExistsException : public std::exception
 {
 public:
-	ArcAlreadyExistsException(const T& start, const T& end) : message("Arc  \"" + start + " - " + end + "\".\n") {}
+	ArcAlreadyExistsException(const T& start, const T& end) : message("Arc  \"" + start + " - " + end + "\" already exists.\n") {}
 
 	virtual ~ArcAlreadyExistsException() noexcept {}
 
