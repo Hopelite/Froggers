@@ -27,7 +27,12 @@ public:
 
 	void add(T i, std::vector<T> v)
 	{
-		this->adjacencyList.push_back(make_pair(i, v));
+		this->addVertex(i);
+		for (auto it = v.begin(); it != v.end(); it++)
+		{
+			this->addArc(i, (*it));
+		}
+		//this->adjacencyList.push_back(make_pair(i, v));
 	}
 
 	class VertexIterator
@@ -292,7 +297,7 @@ public:
 	{
 		if (!this->vertexAlreadyInGraphCheck(vertex))
 		{
-			throw NoSuchElementException(vertex);
+			throw NoSuchElementException();
 		}
 
 		for (int i = 0; i < this->adjacencyList.size(); i++)
@@ -318,19 +323,18 @@ public:
 	{
 		if (!this->vertexAlreadyInGraphCheck(start))
 		{
-			throw NoSuchElementException(start);
+			throw NoSuchElementException();
 		}
 
 		if (!this->vertexAlreadyInGraphCheck(end))
 		{
-			throw NoSuchElementException(end);
+			throw NoSuchElementException();
 		}
 
 		if (this->arcAlreadyExistsCheck(start, end))
 		{
-			throw ArcAlreadyExistsException(start, end);
+			throw ArcAlreadyExistsException();
 		}
-
 
 		for (int i = 0; i < this->adjacencyList.size(); i++)
 		{
@@ -349,17 +353,17 @@ public:
 	{
 		if (!this->vertexAlreadyInGraphCheck(start))
 		{
-			throw NoSuchElementException(start);
+			throw NoSuchElementException();
 		}
 
 		if (!this->vertexAlreadyInGraphCheck(end))
 		{
-			throw NoSuchElementException(end);
+			throw NoSuchElementException();
 		}
 
 		if (!this->arcAlreadyExistsCheck(start, end))
 		{
-			throw NoSuchArcExistsException(start, end);
+			throw NoSuchElementException();
 		}
 
 		for (int i = 0; i < this->adjacencyList.size(); i++)

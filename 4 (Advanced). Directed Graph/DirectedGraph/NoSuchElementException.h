@@ -2,13 +2,12 @@
 #include <exception>
 #include <string>
 
-template<typename T>
-class NoSuchElementExeption : public std::exception
+class NoSuchElementException : public std::exception
 {
 public:
-	NoSuchElementExeption(T vertex) : message("Can't find a vertex \"" + vertex + "\".\n") {}
+	NoSuchElementException() : message("Can't find a vertex.\n") {}
 
-	virtual ~NoSuchElementExeption() noexcept {}
+	virtual ~NoSuchElementException() noexcept {}
 
 	const char* what() const noexcept
 	{

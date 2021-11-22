@@ -35,7 +35,6 @@ int main()
     //}
 
     //dg.addVertex(2);
-    //dg.addVertex(3);
     //dg.addVertex(4);
     //dg.addVertex(5);
     //dg.addVertex(9);
@@ -43,6 +42,7 @@ int main()
     //dg.addVertex(-4);
     //dg.addVertex(78);
     dg.add(1, { 2, 3, 4, 5, 9, 192, -4, 78 });
+    dg.addVertex(3);
     dg.deleteVertex(3);
     dg.add(4, { 3, 5, 192, 228 });
     for (auto it = dg.beginVertexIterator();  it != dg.endVertexIterator(); it++)

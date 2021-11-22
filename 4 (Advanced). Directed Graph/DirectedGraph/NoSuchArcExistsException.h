@@ -2,11 +2,10 @@
 #include <exception>
 #include <string>
 
-template<typename T>
 class NoSuchArcExistsException : public std::exception
 {
 public:
-	NoSuchArcExistsException(const T& start, const T& end) : message("Can't find arc \"" + start + " -- " + end + "\".\n") {}
+	NoSuchArcExistsException() : message("Can't find arc.\n") {}
 
 	virtual ~NoSuchArcExistsException() noexcept {}
 
