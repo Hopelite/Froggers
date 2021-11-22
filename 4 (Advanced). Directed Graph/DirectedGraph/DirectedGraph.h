@@ -13,6 +13,12 @@ friend std::ostream& operator<<(std::ostream& out, const DirectedGraph<U>& vecto
 
 public:
 
+	void add(T i, std::vector<T> v)
+	{
+		this->adjacencyList.push_back(make_pair(i, v));
+	}
+
+
 	class VertexIterator
 	{
 	public:
@@ -82,6 +88,86 @@ public:
 	}
 
 
+
+	class AdjacentVerticiesIterator
+	{
+	public:
+		//using vector_pointer = std::pair<T, std::vector<T>>*;
+		using pointer = T*;
+		using reference = T&;
+
+		AdjacentVerticiesIterator(pointer vertex) : _vertex(vertex) {};
+
+		reference operator*() const
+		{
+			return *_vertex;
+		}
+
+		pointer operator->()
+		{
+			return _vertex;
+		}
+
+		AdjacentVerticiesIterator& operator++() //prefix
+		{
+			_vertex++;
+			return *this;
+		}
+
+		AdjacentVerticiesIterator operator++(int) //postfix
+		{
+			AdjacentVerticiesIterator temporary = *this;
+			++(*this);
+			return temporary;
+		}
+
+		AdjacentVerticiesIterator& operator--() //prefix
+		{
+			_vertex--;
+			return *this;
+		}
+
+		AdjacentVerticiesIterator operator--(int) //postfix
+		{
+			AdjacentVerticiesIterator temporary = *this;
+			--(*this);
+			return temporary;
+		}
+
+		bool operator==(const  AdjacentVerticiesIterator& b)
+		{
+			return this->_vertex == b._vertex;
+		}
+
+		bool operator!=(const  AdjacentVerticiesIterator& b)
+		{
+			return !(this->_vertex == b._vertex);
+		}
+
+	private:
+		//pointer _ptr;
+		pointer _vertex;
+	};
+
+	/*AdjacentVerticiesIterator beginAdjacentVerticies(VertexIterator it)
+	{
+		return AdjacentVerticiesIterator(&(it->second[0]));
+	}
+
+	AdjacentVerticiesIterator endAdjacentVerticies(VertexIterator it)
+	{
+		return AdjacentVerticiesIterator(&(it->second[it->second.size() - 1]) + 1);
+	}*/
+
+	AdjacentVerticiesIterator beginAdjacentVerticies(VertexIterator it)
+	{
+		return AdjacentVerticiesIterator(&(it->second[0]));
+	}
+
+	AdjacentVerticiesIterator endAdjacentVerticies(VertexIterator it)
+	{
+		return AdjacentVerticiesIterator(&(it->second[it->second.size() - 1]) + 1);
+	}
 
 	//class VertexIterator
 	//{
