@@ -169,6 +169,89 @@ public:
 		return AdjacentVerticiesIterator(&(it->second[it->second.size() - 1]) + 1);
 	}
 
+
+
+	class EdgesIterator
+	{
+	public:
+		using pointer = std::pair<T, T>*;
+		using reference = std::pair<T, T>&;
+
+		EdgesIterator(T* vertex, AdjacentVerticiesIterator it) : _vertex(vertex), adjacentVertex(it) {};
+
+		//pair_reference pointer_operator() const //operator*
+		//{
+		//	return *_vertex;
+		//}
+
+		//pair_pointer arrow_operator()//operator->
+		//{
+		//	return _vertex;
+		//}
+
+		reference operator*() const
+		{
+			return *(std::make_pair(*_vertex, *adjacentVertex));
+		}
+
+		pointer operator->()
+		{
+			std::pair<T, T> p = std::make_pair(*_vertex, *adjacentVertex);
+			return &p;
+			//return std::make_pair(*_vertex, *adjacentVertex);
+		}
+
+		EdgesIterator& operator++() //prefix
+		{
+			adjacentVertex++;
+			return *this;
+		}
+
+		EdgesIterator operator++(int) //postfix
+		{
+			++adjacentVertex;
+			return *this;
+		}
+
+		EdgesIterator& operator--() //prefix
+		{
+			adjacentVertex--;
+			return *this;
+		}
+
+		EdgesIterator operator--(int) //postfix
+		{
+			--adjacentVertex;
+			return *this;
+		}
+
+		bool operator==(const  EdgesIterator& b)
+		{
+			return this->adjacentVertex == b.adjacentVertex;
+		}
+
+		bool operator!=(const  EdgesIterator& b)
+		{
+			return !(this->adjacentVertex == b.adjacentVertex);
+		}
+
+	private:
+		T* _vertex;
+		AdjacentVerticiesIterator adjacentVertex;
+	};
+
+	EdgesIterator beginEdges(VertexIterator it)
+	{
+		AdjacentVerticiesIterator iter(&(it->second[0]));
+		return EdgesIterator(it->first, iter);
+	}
+
+	EdgesIterator endEdges(VertexIterator it)
+	{
+		AdjacentVerticiesIterator iter(&(it->second[it->second.size() - 1]) + 1);
+		return EdgesIterator(it->first, iter);
+	}
+
 	//class VertexIterator
 	//{
 	//public:
