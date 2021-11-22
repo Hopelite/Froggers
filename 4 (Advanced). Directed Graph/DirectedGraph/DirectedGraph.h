@@ -13,13 +13,13 @@ friend std::ostream& operator<<(std::ostream& out, const DirectedGraph<U>& vecto
 
 public:
 
-	class AdjacentVertexesIterator
+	class VertexIterator
 	{
 	public:
 		using pointer = std::pair<T, std::vector<T>>*;
 		using reference = std::pair<T, std::vector<T>>&;
 
-		AdjacentVertexesIterator(pointer ptr) : _ptr(ptr) {};
+		VertexIterator(pointer ptr) : _ptr(ptr) {};
 
 		reference operator*() const
 		{
@@ -31,74 +31,9 @@ public:
 			return _ptr;
 		}
 
-		AdjacentVertexesIterator& operator++() //prefix
-		{
-			_ptr++;
-			return *this;
-		}
-
-		AdjacentVertexesIterator operator++(int) //postfix
-		{
-			AdjacentVertexesIterator temporary = *this;
-			++(*this);
-			return temporary;
-		}
-
-		AdjacentVertexesIterator& operator--() //prefix
-		{
-			_ptr--;
-			return *this;
-		}
-
-		AdjacentVertexesIterator operator--(int) //postfix
-		{
-			AdjacentVertexesIterator temporary = *this;
-			--(*this);
-			return temporary;
-		}
-
-		bool operator==(const AdjacentVertexesIterator& b)
-		{
-			return this->_ptr == b._ptr;
-		}
-
-		bool operator!=(const AdjacentVertexesIterator& b)
-		{
-			return !(this->_ptr == b._ptr);
-		}
-
-	private:
-		pointer _ptr;
-	};
-
-	AdjacentVertexesIterator begin()
-	{
-		return AdjacentVertexesIterator(&adjacencyList[0]);
-	}
-
-	AdjacentVertexesIterator end()
-	{
-		return AdjacentVertexesIterator(&adjacencyList[adjacencyList.size() - 1] + 1);
-	}
-
-	class VertexIterator
-	{
-	public:
-		using pointer = std::pair<T, std::vector<T>>*;
-
-		VertexIterator(pointer ptr) : iterator(ptr)
-		{
-			this->iterator = AdjacentVertexesIterator(ptr);
-		}
-
-		T operator*() const
-		{
-			return (*iterator).first;
-		}
-
 		VertexIterator& operator++() //prefix
 		{
-			this->iterator++;
+			_ptr++;
 			return *this;
 		}
 
@@ -111,7 +46,7 @@ public:
 
 		VertexIterator& operator--() //prefix
 		{
-			this->iterator--;
+			_ptr--;
 			return *this;
 		}
 
@@ -124,16 +59,16 @@ public:
 
 		bool operator==(const VertexIterator& b)
 		{
-			return this->iterator == b.iterator;
+			return this->_ptr == b._ptr;
 		}
 
 		bool operator!=(const VertexIterator& b)
 		{
-			return !(this->iterator == b.iterator);
+			return !(this->_ptr == b._ptr);
 		}
 
 	private:
-		AdjacentVertexesIterator iterator;
+		pointer _ptr;
 	};
 
 	VertexIterator beginVertexIterator()
@@ -146,80 +81,151 @@ public:
 		return VertexIterator(&adjacencyList[adjacencyList.size() - 1] + 1);
 	}
 
-	class EdgesIterator 
-	{
-	public:
-		using pointer = std::pair<T, std::vector<T>>*;
 
-		EdgesIterator(pointer ptr) : iterator(ptr)
-		{
-			this->iterator = AdjacentVertexesIterator(ptr);
-		}
 
-		std::pair<T, T> operator*()
-		{
-			return std::make_pair((*this->iterator).first, (*this->adjacentVertexes));
-		}
+	//class VertexIterator
+	//{
+	//public:
+	//	using pointer = std::pair<T, std::vector<T>>*;
 
-		EdgesIterator& operator++() //prefix
-		{
-			if (this->adjacentVertexes == (*this->iterator).second.end())
-			{
-				this->iterator++;
-				this->adjacentVertexes = (*this->iterator).second.begin();
-			}
-			else
-			{
-				this->adjacentVertexes++;
-			}
+	//	VertexIterator(pointer ptr) : iterator(ptr)
+	//	{
+	//		this->iterator = AdjacentVertexesIterator(ptr);
+	//	}
 
-			return *this;
-		}
+	//	T operator*() const
+	//	{
+	//		return (*iterator).first;
+	//	}
 
-		EdgesIterator operator++(int) //postfix
-		{
-			EdgesIterator temporary = *this;
-			++(*this);
-			return temporary;
-		}
+	//	VertexIterator& operator++() //prefix
+	//	{
+	//		this->iterator++;
+	//		return *this;
+	//	}
 
-		//EdgesIterator& operator--() //prefix
-		//{
-		//	this->iterator--;
-		//	return *this;
-		//}
+	//	VertexIterator operator++(int) //postfix
+	//	{
+	//		VertexIterator temporary = *this;
+	//		++(*this);
+	//		return temporary;
+	//	}
 
-		//EdgesIterator operator--(int) //postfix
-		//{
-		//	EdgesIterator temporary = *this;
-		//	--(*this);
-		//	return temporary;
-		//}
+	//	VertexIterator& operator--() //prefix
+	//	{
+	//		this->iterator--;
+	//		return *this;
+	//	}
 
-		bool operator==(const EdgesIterator& b)
-		{
-			return this->iterator == b.iterator;
-		}
+	//	VertexIterator operator--(int) //postfix
+	//	{
+	//		VertexIterator temporary = *this;
+	//		--(*this);
+	//		return temporary;
+	//	}
 
-		bool operator!=(const EdgesIterator& b)
-		{
-			return !(this->iterator == b.iterator);
-		}
+	//	bool operator==(const VertexIterator& b)
+	//	{
+	//		return this->iterator == b.iterator;
+	//	}
 
-	private:
-		AdjacentVertexesIterator iterator;
-		std::vector<T>::iterator adjacentVertexes;
-	};
+	//	bool operator!=(const VertexIterator& b)
+	//	{
+	//		return !(this->iterator == b.iterator);
+	//	}
 
-	EdgesIterator beginEdgesIterator()
-	{
-		return EdgesIterator(&adjacencyList[0]);
-	}
+	//private:
+	//	AdjacentVertexesIterator iterator;
+	//};
 
-	EdgesIterator endEdgesIterator()
-	{
-		return EdgesIterator(&adjacencyList[adjacencyList.size() - 1] + 1);
-	}
+	//VertexIterator beginVertexIterator()
+	//{
+	//	return VertexIterator(&adjacencyList[0]);
+	//}
+
+	//VertexIterator endVertexIterator()
+	//{
+	//	return VertexIterator(&adjacencyList[adjacencyList.size() - 1] + 1);
+	//}
+
+
+
+	//class EdgesIterator 
+	//{
+	//public:
+	//	using pointer = std::pair<T, std::vector<T>>*;
+
+	//	EdgesIterator(pointer ptr) : iterator(ptr)
+	//	{
+	//		this->iterator = AdjacentVertexesIterator(ptr);
+	//	}
+
+	//	std::pair<T, T> operator*()
+	//	{
+	//		return std::make_pair((*this->iterator).first, (*this->adjacentVertexes));
+	//	}
+
+	//	EdgesIterator& operator++() //prefix
+	//	{
+	//		if (this->adjacentVertexes == (*this->iterator).second.end())
+	//		{
+	//			this->iterator++;
+	//			this->adjacentVertexes = (*this->iterator).second.begin();
+	//		}
+	//		else
+	//		{
+	//			this->adjacentVertexes++;
+	//		}
+
+	//		return *this;
+	//	}
+
+	//	EdgesIterator operator++(int) //postfix
+	//	{
+	//		EdgesIterator temporary = *this;
+	//		++(*this);
+	//		return temporary;
+	//	}
+
+	//	//EdgesIterator& operator--() //prefix
+	//	//{
+	//	//	this->iterator--;
+	//	//	return *this;
+	//	//}
+
+	//	//EdgesIterator operator--(int) //postfix
+	//	//{
+	//	//	EdgesIterator temporary = *this;
+	//	//	--(*this);
+	//	//	return temporary;
+	//	//}
+
+	//	bool operator==(const EdgesIterator& b)
+	//	{
+	//		return this->iterator == b.iterator;
+	//	}
+
+	//	bool operator!=(const EdgesIterator& b)
+	//	{
+	//		return !(this->iterator == b.iterator);
+	//	}
+
+	//private:
+	//	AdjacentVertexesIterator iterator;
+	//	std::vector<T>::iterator adjacentVertexes;
+	//};
+
+	//EdgesIterator beginEdgesIterator()
+	//{
+	//	return EdgesIterator(&adjacencyList[0]);
+	//}
+
+	//EdgesIterator endEdgesIterator()
+	//{
+	//	return EdgesIterator(&adjacencyList[adjacencyList.size() - 1] + 1);
+	//}
+
+
 
 	bool isEmpty()
 	{
