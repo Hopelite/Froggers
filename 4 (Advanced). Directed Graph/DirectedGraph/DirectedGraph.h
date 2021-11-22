@@ -4,6 +4,9 @@
 #include <ostream>
 #include <iterator>
 #include <utility>
+#include "NoSuchElementException.h"
+#include "ArcAlreadyExistsException.h"
+#include "NoSuchArcExistsException.h"
 
 template <typename T>
 class DirectedGraph
@@ -24,7 +27,12 @@ public:
 
 	void add(T i, std::vector<T> v)
 	{
-		this->adjacencyList.push_back(make_pair(i, v));
+		this->addVertex(i);
+		for (auto it = v.begin(); it != v.end(); it++)
+		{
+			this->addArc(i, (*it));
+		}
+		//this->adjacencyList.push_back(make_pair(i, v));
 	}
 
 	class VertexIterator
@@ -289,7 +297,7 @@ public:
 	{
 		if (!this->vertexAlreadyInGraphCheck(vertex))
 		{
-			// TODO: throw NoSuchElementException exception
+			throw NoSuchElementException();
 		}
 
 		for (int i = 0; i < this->adjacencyList.size(); i++)
@@ -315,19 +323,18 @@ public:
 	{
 		if (!this->vertexAlreadyInGraphCheck(start))
 		{
-			// TODO: throw NoSuchElementException exception
+			throw NoSuchElementException();
 		}
 
 		if (!this->vertexAlreadyInGraphCheck(end))
 		{
-			// TODO: throw NoSuchElementException exception
+			throw NoSuchElementException();
 		}
 
 		if (this->arcAlreadyExistsCheck(start, end))
 		{
-			// TODO: throw ArcAlreadyExistsException exception
+			throw ArcAlreadyExistsException();
 		}
-
 
 		for (int i = 0; i < this->adjacencyList.size(); i++)
 		{
@@ -346,17 +353,17 @@ public:
 	{
 		if (!this->vertexAlreadyInGraphCheck(start))
 		{
-			// TODO: throw NoSuchElementException exception
+			throw NoSuchElementException();
 		}
 
 		if (!this->vertexAlreadyInGraphCheck(end))
 		{
-			// TODO: throw NoSuchElementException exception
+			throw NoSuchElementException();
 		}
 
 		if (!this->arcAlreadyExistsCheck(start, end))
 		{
-			// TODO: throw NoSuchArcExistsException exception
+			throw NoSuchElementException();
 		}
 
 		for (int i = 0; i < this->adjacencyList.size(); i++)
