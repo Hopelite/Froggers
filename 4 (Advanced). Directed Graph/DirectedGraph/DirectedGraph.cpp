@@ -3,24 +3,11 @@
 #include "framework.h"
 
 template <typename T>
-std::ostream& operator<<(std::ostream& out, const DirectedGraph<T>& vector)
+std::ostream& operator<<(std::ostream& out, DirectedGraph<T>& graph)
 {
-	// TODO: refactor method using custom iterator
-
-	auto mapIterator = vector.adjacencyList->begin();
-	while (mapIterator != vector.adjacencyList->end())
+	for (auto it = graph.begin(); it != graph.end(); it++)
 	{
-		out << (*mapIterator).first << ": ";
-
-		auto vectorIterator = (*mapIterator).second.begin();
-		while (vectorIterator != (*mapIterator).second.end())
-		{
-			out << *vectorIterator << " ";
-			vectorIterator++;
-		}
-
-		out << std::endl;
-		mapIterator++;
+		out << (*it).first;
 	}
 
     return out;
