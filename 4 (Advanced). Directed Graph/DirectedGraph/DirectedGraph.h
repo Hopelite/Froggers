@@ -12,6 +12,15 @@ template <typename U>
 friend std::ostream& operator<<(std::ostream& out, const DirectedGraph<U>& vector);
 
 public:
+	DirectedGraph()
+	{
+		this->clear();
+	}
+
+	DirectedGraph(const DirectedGraph& graph)
+	{
+		this->adjacencyList = graph.adjacencyList;
+	}
 
 	void add(T i, std::vector<T> v)
 	{
@@ -162,16 +171,6 @@ public:
 
 		EdgesIterator(VertexIterator vit, AdjacentVerticiesIterator ait) : currentVertex(vit), adjacentVertex(ait) {};
 
-		//pair_reference pointer_operator() const //operator*
-		//{
-		//	return *_vertex;
-		//}
-
-		//pair_pointer arrow_operator()//operator->
-		//{
-		//	return _vertex;
-		//}
-
 		std::pair<T, T> operator*() const
 		{
 			auto pair = std::make_pair((*currentVertex).first, *adjacentVertex);
@@ -182,7 +181,6 @@ public:
 		{
 			std::pair<T, T> p = std::make_pair((*currentVertex).first, *adjacentVertex);
 			return &p;
-			//return std::make_pair(*_vertex, *adjacentVertex);
 		}
 
 		EdgesIterator& operator++() //prefix
@@ -227,7 +225,7 @@ public:
 	EdgesIterator beginEdges(VertexIterator it)
 	{
 		AdjacentVerticiesIterator iter(&(it->second[0]));
-		return EdgesIterator(it ,iter);
+		return EdgesIterator(it, iter);
 	}
 
 	EdgesIterator endEdges(VertexIterator it)
@@ -243,7 +241,7 @@ public:
 
 	void clear()
 	{
-		// TODO: implement method
+		this->adjacencyList = std::vector<std::pair<T, std::vector<T>>>();
 	}
 
 	int getNumberOfVertexes()
@@ -266,7 +264,13 @@ public:
 
 	int getVertexDegree(const T& vertex)
 	{
-		return -1;
+		for (int i = 0; i < this->adjacencyList.size(); i++)
+		{
+			if (this->adjacencyList[i].first == vertex)
+			{
+				return this->adjacencyList[i].second.size();
+			}
+		}
 	}
 
 	int getArcDegree(const T& start, const T& end)
@@ -283,82 +287,127 @@ public:
 
 	void deleteVertex(T vertex)
 	{
-		//if (!this->vertexAlreadyInGraphCheck(vertex))
-		//{
-		//	// TODO: throw NoSuchElementException exception
-		//}
-		
-		// TODO: implement logic of arcs deleting
+		if (!this->vertexAlreadyInGraphCheck(vertex))
+		{
+			// TODO: throw NoSuchElementException exception
+		}
+
+		for (int i = 0; i < this->adjacencyList.size(); i++)
+		{
+			if (this->adjacencyList[i].first == vertex)
+			{
+				this->adjacencyList.erase(this->adjacencyList.begin() + i);
+				continue;
+			}
+
+			for (int j = 0; j < this->adjacencyList[i].second.size(); j++)
+			{
+				if (this->adjacencyList[i].second[j] == vertex)
+				{
+					this->adjacencyList[i].second.erase(this->adjacencyList[i].second.begin() + j);
+					break;
+				}
+			}
+		}
 	}
 
 	void addArc(const T& start, const T& end)
 	{
-		//if (!this->vertexAlreadyInGraphCheck(start))
-		//{
-		//	// TODO: throw NoSuchElementException exception
-		//}
+		if (!this->vertexAlreadyInGraphCheck(start))
+		{
+			// TODO: throw NoSuchElementException exception
+		}
 
-		//if (!this->vertexAlreadyInGraphCheck(end))
-		//{
-		//	// TODO: throw NoSuchElementException exception
-		//}
+		if (!this->vertexAlreadyInGraphCheck(end))
+		{
+			// TODO: throw NoSuchElementException exception
+		}
 
-		//auto iterator = this->adjacencyList->find(start);
+		if (this->arcAlreadyExistsCheck(start, end))
+		{
+			// TODO: throw ArcAlreadyExistsException exception
+		}
 
-		// TODO: add chech whether arc already exists
-		//(*iterator).second.push_back(end);
 
-		// TODO: implement method
+		for (int i = 0; i < this->adjacencyList.size(); i++)
+		{
+			if (this->adjacencyList[i].first == start)
+			{
+				for (int j = 0; j < this->adjacencyList[i].second.size(); j++)
+				{
+					this->adjacencyList[i].second.push_back(end);
+					return;
+				}
+			}
+		}
 	}
 
 	void deleteArc(const T& start, const T& end)
 	{
-		// TODO: implement method
-	}
+		if (!this->vertexAlreadyInGraphCheck(start))
+		{
+			// TODO: throw NoSuchElementException exception
+		}
 
-	const DirectedGraph& operator=(const DirectedGraph& rhs)
-	{
-		// TODO: override operator
-		return DirectedGraph();
-	}
+		if (!this->vertexAlreadyInGraphCheck(end))
+		{
+			// TODO: throw NoSuchElementException exception
+		}
 
-	const bool operator==(const DirectedGraph& rhs)
-	{
-		// TODO: override operator
-		return false;
-	}
+		if (!this->arcAlreadyExistsCheck(start, end))
+		{
+			// TODO: throw NoSuchArcExistsException exception
+		}
 
-	const bool operator!=(const DirectedGraph& rhs)
-	{
-		// TODO: override operator
-		return false;
-	}
-
-	const bool operator>(DirectedGraph& rhs)
-	{
-		// TODO: override operator
-		return false;
-	}
-
-	const bool operator>=(DirectedGraph& rhs)
-	{
-		// TODO: override operator
-		return false;
-	}
-
-	const bool operator<(DirectedGraph& rhs)
-	{
-		// TODO: override operator
-		return false;
-	}
-
-	const bool operator<=(DirectedGraph& rhs)
-	{
-		// TODO: override operator
-		return false;
+		for (int i = 0; i < this->adjacencyList.size(); i++)
+		{
+			if (this->adjacencyList[i].first == start)
+			{
+				for (int j = 0; j < this->adjacencyList[i].second.size(); j++)
+				{
+					if (this->adjacencyList[i].second[j] == end)
+					{
+						this->adjacencyList[i].second.erase(this->adjacencyList[i].second.begin() + j);
+						return;
+					}
+				}
+			}
+		}
 	}
 
 private:
 	std::vector<std::pair<T, std::vector<T>>> adjacencyList;
+
+	bool vertexAlreadyInGraphCheck(T vertex)
+	{
+		for (auto it = this->adjacencyList.begin(); it != this->adjacencyList.end(); it++)
+		{
+			if ((*it).first == vertex)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	bool arcAlreadyExistsCheck(const T& start, const T& end)
+	{
+		for (auto it = this->adjacencyList.begin(); it != this->adjacencyList.end(); it++)
+		{
+			if ((*it).first == start)
+			{
+				for (auto innerIt = (*it).second.begin(); innerIt != (*it).second.end(); innerIt++)
+				{
+					if ((*innerIt) == end)
+					{
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
 };
 

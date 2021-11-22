@@ -5,16 +5,6 @@
 int main()
 {
     DirectedGraph<int> dg;
-    /*dg.addVertex(9);
-    dg.addVertex(0);
-    dg.addVertex(1);
-    dg.addVertex(5);
-    dg.addVertex(9);
-    dg.addVertex(-11);
-    dg.addVertex(92);
-    dg.addVertex(87);
-    dg.addVertex(13);
-    dg.addVertex(52);*/
 
     /*for (auto it = dg.beginVertexIterator(); it != dg.endVertexIterator(); it++)
     {
@@ -44,7 +34,16 @@ int main()
     //    std::cout << std::endl;
     //}
 
+    //dg.addVertex(2);
+    //dg.addVertex(3);
+    //dg.addVertex(4);
+    //dg.addVertex(5);
+    //dg.addVertex(9);
+    //dg.addVertex(192);
+    //dg.addVertex(-4);
+    //dg.addVertex(78);
     dg.add(1, { 2, 3, 4, 5, 9, 192, -4, 78 });
+    dg.deleteVertex(3);
     dg.add(4, { 3, 5, 192, 228 });
     for (auto it = dg.beginVertexIterator();  it != dg.endVertexIterator(); it++)
     {
