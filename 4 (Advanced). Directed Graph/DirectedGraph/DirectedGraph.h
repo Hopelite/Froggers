@@ -4,6 +4,9 @@
 #include <ostream>
 #include <iterator>
 #include <utility>
+#include "NoSuchElementException.h"
+#include "ArcAlreadyExistsException.h"
+#include "NoSuchArcExistsException.h"
 
 template <typename T>
 class DirectedGraph
@@ -289,7 +292,7 @@ public:
 	{
 		if (!this->vertexAlreadyInGraphCheck(vertex))
 		{
-			// TODO: throw NoSuchElementException exception
+			throw NoSuchElementException(vertex);
 		}
 
 		for (int i = 0; i < this->adjacencyList.size(); i++)
@@ -315,17 +318,17 @@ public:
 	{
 		if (!this->vertexAlreadyInGraphCheck(start))
 		{
-			// TODO: throw NoSuchElementException exception
+			throw NoSuchElementException(start);
 		}
 
 		if (!this->vertexAlreadyInGraphCheck(end))
 		{
-			// TODO: throw NoSuchElementException exception
+			throw NoSuchElementException(end);
 		}
 
 		if (this->arcAlreadyExistsCheck(start, end))
 		{
-			// TODO: throw ArcAlreadyExistsException exception
+			throw ArcAlreadyExistsException(start, end);
 		}
 
 
@@ -346,17 +349,17 @@ public:
 	{
 		if (!this->vertexAlreadyInGraphCheck(start))
 		{
-			// TODO: throw NoSuchElementException exception
+			throw NoSuchElementException(start);
 		}
 
 		if (!this->vertexAlreadyInGraphCheck(end))
 		{
-			// TODO: throw NoSuchElementException exception
+			throw NoSuchElementException(end);
 		}
 
 		if (!this->arcAlreadyExistsCheck(start, end))
 		{
-			// TODO: throw NoSuchArcExistsException exception
+			throw NoSuchArcExistsException(start, end);
 		}
 
 		for (int i = 0; i < this->adjacencyList.size(); i++)
