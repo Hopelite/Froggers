@@ -18,7 +18,6 @@ public:
 		this->adjacencyList.push_back(make_pair(i, v));
 	}
 
-
 	class VertexIterator
 	{
 	public:
@@ -87,8 +86,6 @@ public:
 		return VertexIterator(&adjacencyList[adjacencyList.size() - 1] + 1);
 	}
 
-
-
 	class AdjacentVerticiesIterator
 	{
 	public:
@@ -156,8 +153,6 @@ public:
 	{
 		return AdjacentVerticiesIterator(&(it->second[it->second.size() - 1]) + 1);
 	}
-
-
 
 	class EdgesIterator
 	{
