@@ -15,4 +15,4 @@
 - [x] [№2. Зоопарк](https://github.com/Hopelite/Froggers/tree/main/2.%20Zoo)
 - [x] [№3. Стэковая машина](https://github.com/Hopelite/Froggers/tree/main/3.%20Stack%20Machine)
 - [x] [№4. Шаблонные функции для сортировки](https://github.com/Hopelite/Froggers/tree/main/4.%20Pattern%20Sorting%20Functions)
-- [ ] [№4 (усложненное). Ориентированный граф (Список смежности)](https://github.com/Hopelite/Froggers/tree/main/4%20(Advanced).%20Directed%20Graph)
+- [x] [№4 (усложненное). Ориентированный граф (Список смежности)](https://github.com/Hopelite/Froggers/tree/main/4%20(Advanced).%20Directed%20Graph)
