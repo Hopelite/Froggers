@@ -1,5 +1,4 @@
 #pragma once
-#include <map>
 #include <vector>
 #include <ostream>
 #include <iterator>
@@ -280,8 +279,6 @@ public:
 		}
 	}
 
-
-
 	void addVertex(T vertex)
 	{
 		std::vector<T> v = {};
@@ -336,10 +333,6 @@ public:
 			if (this->adjacencyList[i].first == start)
 			{
 				this->adjacencyList[i].second.push_back(end);
-				//for (int j = 0; j < this->adjacencyList[i].second.size(); j++)
-				//{
-				//	return;
-				//}
 			}
 		}
 	}

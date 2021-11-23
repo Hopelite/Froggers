@@ -14,7 +14,7 @@ int main()
         dg.addArc(5, 3);
         dg.addArc(3, 9);
         dg.addArc(9, 1);
-        /*dg.addVertex(3);
+        /*dg.addVertex(3)
         dg.deleteVertex(3);*/
         for (auto it = dg.beginVertexIterator(); it != dg.endVertexIterator(); it++)
         {
