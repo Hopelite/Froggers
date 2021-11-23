@@ -32,7 +32,6 @@ public:
 		{
 			this->addArc(i, (*it));
 		}
-		//this->adjacencyList.push_back(make_pair(i, v));
 	}
 
 	class VertexIterator
@@ -340,11 +339,11 @@ public:
 		{
 			if (this->adjacencyList[i].first == start)
 			{
-				for (int j = 0; j < this->adjacencyList[i].second.size(); j++)
-				{
-					this->adjacencyList[i].second.push_back(end);
-					return;
-				}
+				this->adjacencyList[i].second.push_back(end);
+				//for (int j = 0; j < this->adjacencyList[i].second.size(); j++)
+				//{
+				//	return;
+				//}
 			}
 		}
 	}

@@ -5,7 +5,7 @@
 template <typename T>
 std::ostream& operator<<(std::ostream& out, DirectedGraph<T>& graph)
 {
-	for (auto it = graph.begin(); it != graph.end(); it++)
+	for (auto it = graph.beginVertexIterator(); it != graph.endVertexIterator(); it++)
 	{
 		out << (*it).first;
 	}
