@@ -280,11 +280,7 @@ public:
 		}
 	}
 
-	int getArcDegree(const T& start, const T& end)
-	{
-		// TODO: implement method
-		return -1;
-	}
+
 
 	void addVertex(T vertex)
 	{
